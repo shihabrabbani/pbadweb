@@ -1,0 +1,60 @@
+﻿
+@model AdBookingReportSearchFilter
+
+
+@using (Html.BeginForm("List", "Order", FormMethod.Post, new { @role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="card">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="SearchTerm" data-toggle="tooltip" title="Search by booking no, booked by, advertiser, advertiser mobile, agency, brand">Search Term</label>
+                        @Html.TextBoxFor(model => model.SearchTerm, new { @class = "form-control", @placeholder = "Search Term" })
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="SearchTerm">Book Start Date</label>
+                        @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control gr-datepicker", @placeholder = "Date" })
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="SearchTerm">Book End Date</label>
+                        @Html.TextBoxFor(model => model.EndDate, new { @class = "form-control gr-datepicker", @placeholder = "Date" })
+                    </div>
+
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="SearchTerm">Bill Start Date</label>
+                        @Html.TextBoxFor(model => model.BillStartDate, new { @class = "form-control gr-datepicker", @placeholder = "Date" })
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="SearchTerm">Bill End Date</label>
+                        @Html.TextBoxFor(model => model.BillEndDate, new { @class = "form-control gr-datepicker", @placeholder = "Date" })
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="SearchTerm"></label>
+                        <button type="submit" class="btn btn-teal"> <i class="fa fa-search"></i> Search</button>
+
+                        @*<a href="/order/list" class="btn btn-link" style="margin-top: 32px;"> <i class="fa fa-refresh"></i> Refresh</a>*@
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <hr />
+}

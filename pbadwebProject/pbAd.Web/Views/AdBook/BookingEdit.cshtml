@@ -1,0 +1,232 @@
+﻿
+@inject IConfiguration Configuration
+
+@model BookAdViewModel
+@{
+    ViewData["Title"] = "Ad Book";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var version = Configuration.GetSection("Proshar")["Version"];
+
+    var userGroup = User.Claims.FirstOrDefault(c => c.Type == "GroupId").Value;
+    var canViewBrandAndAgency = userGroup == UserGroupConstants.CRM_User.ToString();
+
+    var toggleshowhide = canViewBrandAndAgency ? "d-none" : "";
+
+    var toggleSingleBulletChecking = Model.AdEnhancementTypeBullet == AddEnhancementTypeConstants.BigBulletPointSingle ? "checked='checked'" : "";
+    var toggleDoubleBulletChecking = Model.AdEnhancementTypeBullet == AddEnhancementTypeConstants.BigBulletPointDouble ? "checked='checked'" : "";
+
+    var toggleBold = Model.AdEnhancementType == AddEnhancementTypeConstants.Bold ? "checked='checked'" : "";
+    var toggleBoldInScreen = Model.AdEnhancementType == AddEnhancementTypeConstants.BoldInScreen ? "checked='checked'" : "";
+    var toggleBoldInScreenAndSingleBox = Model.AdEnhancementType == AddEnhancementTypeConstants.BoldInScreenAndSingleBox ? "checked='checked'" : "";
+    var toggleBoldInScreenAndDoubleBoxes = Model.AdEnhancementType == AddEnhancementTypeConstants.BoldInScreenAndDoubleBoxes ? "checked='checked'" : "";
+}
+
+@section BookingWidget{
+    <div class="steps">
+        <ul>
+            <li class="active">
+                <span>1</span>
+                Start
+            </li>
+            <li class="active">
+                <span>2</span>
+                COMPOSE AD
+            </li>
+            <li>
+                <span>3</span>
+                PAYMENT
+            </li>
+        </ul>
+    </div>
+}
+
+
+<div class="form-wizard">
+    <div class="myContainer">
+        @using (Html.BeginForm("BookingEdit", "AdBook", FormMethod.Post, new { @role = "form", @class = "form-container", @id = "form-adbook" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.ABPrintClassifiedTextId)
+            @Html.HiddenFor(model => model.TotalWordCount)
+            @Html.HiddenFor(model => model.EstimatedTotal)
+            @Html.Hidden("hiddenPerWordRate", Model.RatePrintClassifiedText.PerWordRate)
+            @Html.Hidden("hiddenMaxWords", Model.RatePrintClassifiedText.MaxWords)
+            @Html.Hidden("isEnteredMaxWords", 0)
+            @Html.Hidden("previousAdCompose")
+            @Html.HiddenFor(model => model.DatesBasedOffer)
+            @Html.HiddenFor(model => model.DiscountPercentage)
+            @Html.Hidden("UserGroup", userGroup)
+            @Html.HiddenFor(model => model.OfferDateId)
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card edit-card">
+                        <div class="border-bottom">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>Edit Classified Text</h5>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <a href="/checkout/@Model.ABPrintClassifiedTextId/payment/@Model.BookingNo" oncontextmenu="return false" class="btn btn-sm btn-teal my-1"> <i class="fa fa-backward"></i> Back to Payment</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="ad-compose">
+                                <div class="btn btn-teal compose-ad">Compose Ad Matter</div>
+                                @Html.TextAreaFor(model => model.AdContent, new { @rows = "9", @class = "adfield", @id = "abcdfield", @placeholder = "start typing your ad here" })                                    <div class="line-cost">
+                                    <p>No. of Words Used : <span class="no-of-words">0</span></p>
+                                    <p>Estimated Cost BDT: <span class="esitmated-cost-amount">0</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="enhan">
+                                <div class="btn btn-teal compose-ad">Ad Enhancements</div>
+                                <div class="ad-editer">
+                                    <p><input type="checkbox" @toggleSingleBulletChecking value="@AddEnhancementTypeConstants.BigBulletPointSingle" name="AdEnhancementTypeBullet" ad-enhancement-type="@Model.RatePrintClassifiedText.BigBulletPointSingle"> @AddEnhancementTypeConstants.BigBulletPointSingle ( <span style="color: red">@((int)Model.RatePrintClassifiedText.BigBulletPointSingle)%</span>)</p>
+                                    <p><input type="checkbox" @toggleDoubleBulletChecking value="@AddEnhancementTypeConstants.BigBulletPointDouble" name="AdEnhancementTypeBullet" ad-enhancement-type="@Model.RatePrintClassifiedText.BigBulletPointDouble"> Big Bullet Point (Double) ( <span style="color: red">@((int)Model.RatePrintClassifiedText.BigBulletPointDouble)%</span>)</p>
+                                    <hr />
+                                    <p><input type="checkbox" @toggleBold value="@AddEnhancementTypeConstants.Bold" name="AdEnhancementType" ad-enhancement-type="@Model.RatePrintClassifiedText.BoldPercentage"> Bold ( <span style="color: red">@((int)Model.RatePrintClassifiedText.BoldPercentage)%</span> )</p>
+                                    <p><input type="checkbox" @toggleBoldInScreen value="@AddEnhancementTypeConstants.BoldInScreen" name="AdEnhancementType" ad-enhancement-type="@Model.RatePrintClassifiedText.BoldinScreenPercentage"> Bold in Screen ( <span style="color: red">@((int)Model.RatePrintClassifiedText.BoldinScreenPercentage)%</span>)</p>
+                                    <p><input type="checkbox" @toggleBoldInScreenAndSingleBox value="@AddEnhancementTypeConstants.BoldInScreenAndSingleBox" name="AdEnhancementType" ad-enhancement-type="@Model.RatePrintClassifiedText.BoldScreenSingleBoxPercentage"> Bold in Screen and Single Box ( <span style="color: red">@((int)Model.RatePrintClassifiedText.BoldScreenSingleBoxPercentage)%</span>)</p>
+                                    <p><input type="checkbox" @toggleBoldInScreenAndDoubleBoxes value="@AddEnhancementTypeConstants.BoldInScreenAndDoubleBoxes" name="AdEnhancementType" ad-enhancement-type="@Model.RatePrintClassifiedText.BoldScreenDoubleBoxPercentage"> Bold in Screen and Double Box ( <span style="color: red">@((int)Model.RatePrintClassifiedText.BoldScreenDoubleBoxPercentage)%</span>)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <p>Please keep space between two words while composing your ad.</p>
+                        </div>
+                    </div>
+                    <div class="row main-grid compose">
+                        <div class="col-md-12 title_bg">
+                            <div class="cat-select contact">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.DropDownListFor(m => m.CategoryId, Model.CategoryDropdownList, "Select Category", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.CategoryId)
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.DropDownListFor(m => m.SubCategoryId, Model.SubCategoryDropdownList, "Select Sub Category", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.SubCategoryId)
+                                    </div>
+                                </div>
+                            </div>
+
+                            @if (canViewBrandAndAgency)
+                            {
+                                <div class="cat-select contact">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            @Html.TextBoxFor(model => model.AgencyAutoComplete, new { @class = "form-control", @placeHolder = "Agency" })
+                                            @Html.HiddenFor(model => model.AgencyId)
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox">
+                                                    @Html.CheckBoxFor(m => m.Personal, new { @class = "custom-control-input", @value = "true" })
+                                                    <label class="custom-control-label" for="Personal">Personal</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                            <div class="row section-advitiser @toggleshowhide">
+                                <div class="col-md-12">
+
+                                    <div class="cat-select contact">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                @Html.TextBoxFor(model => model.AdvertiserName, new { @class = "form-control", autocomplete = "off", @placeholder = "Advertiser" })
+                                                @Html.ValidationMessageFor(model => model.AdvertiserName)
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                    </div>
+                                                    @Html.TextBoxFor(model => model.AdvertiserContactNumber, new { @class = "form-control", autocomplete = "off", @placeholder = "মোবাইল নং" })
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.AdvertiserContactNumber)
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="cat-select contact">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Remarks)
+                                                    @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Remarks)
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="btn btn-teal compose-ad">Ad Preview</div>
+                    <div class="add-preview">
+                        <div class="bdr" style="width:145px;">
+                            <div class="con" id="mainAddText">
+                                <div class="ad-preview">
+                                    @Model.AdContent
+                                </div>
+                            </div>
+                            @*<div class="note">Font size in the preview is not as per scale. Actual word/lines may vary based on selected enhancements.</div>*@
+                        </div>
+                    </div>
+
+                    <div class="add-preview date-based">
+                        <div class="btn btn-teal compose-ad">Date Based Offer</div>
+                        <div class="bdr">
+                            <div class="rate" id="rate">
+
+                                <!--Add here date picker -->
+                                <div class="input-group input-dateranged">
+                                    <input type="text" autocomplete="off" class="form-control prs-datepicker" id="DateBasedOffer" placeholder="Select Date">
+                                    <button class="btn btn-teal btn-date-based-offer" type="button" style="margin:0px 10px;color:white;">ADD</button>
+                                </div>
+                                <div class="date-box date-based-offer-container mt-1">
+                                    <span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> No dates selected</span>
+                                </div>
+                                <hr />
+                                <div class="date-box">
+                                    <p>Discount: <span class="discount-offer">0</span>%</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-teal btn-make-payment">MAKE PAYMENT <i class="fa fa-long-arrow-right"></i></button>
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+</div>
+<!--  -->
+
+@section Scripts{
+    <link rel="stylesheet" type="text/css" href="~/css/adbook.css?v=@version">
+    <script src="~/js/adbooks/adBookEditManager.js?v=@version"></script>
+}

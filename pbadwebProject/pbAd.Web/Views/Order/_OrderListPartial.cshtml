@@ -1,0 +1,78 @@
+﻿
+@model AdBookingOrderListViewModel
+
+<div class="row">
+    <div class="col-md-12 x-scroller">
+        @if (Model.BookingOrderList.Any())
+        {
+            <table class="table table-hover table-striped table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Booking #</th>
+                        <th scope="col">Ad Type</th>
+                        <th scope="col">Booked By</th>
+                        <th scope="col">Booked On</th>
+                        <th scope="col">Bill On</th>
+                        <th scope="col">Agency Name</th>
+                        <th scope="col">Brand Name</th>
+                        <th scope="col">Avertiser</th>
+                        <th scope="col">Avertiser Mobile</th>
+                        <th scope="col">Bill No</th>
+                        <th scope="col">Net Payable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.BookingOrderList)
+                    {
+                        var billDate = "";
+                        if (item.BillDate != null)
+                        {
+                            billDate = ((DateTime)item.BillDate).ToString("dd-MMM-yyyy h:mm tt");
+                        }
+                        <tr>
+                            <th scope="row">@item.BookingNo</th>
+                            <td>@item.AdType</td>
+                            <td>@item.BookedByUser</td>
+                            <td>@item.BookDate.ToString("dd-MMM-yyyy h:mm tt")</td>
+                            <td>@billDate</td>
+                            <td>@item.AgencyName</td>
+                            <td>@item.BrandName</td>
+                            <td>@item.AdvertiserName</td>
+                            <td>@item.AdvertiserMobileNo</td>
+                            <td>
+                                @if (!string.IsNullOrWhiteSpace(item.BillNo))
+                                {
+                                    <a target="_blank" href="@item.BillURL">@item.BillNo</a>
+                                }
+                            </td>
+                            <td>@item.NetPayable</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @if (Model.SearchFilter.TotalCount > Model.SearchFilter.PageSize)
+            {
+                <div class="pagination__wrapper add_bottom_30">
+                    @Html.PagedListPager((IPagedList)Model.BookingOrderList, page => Url.Action("List", new
+                   {
+                       pageNumber = page,
+                       searchTerm = Model.SearchFilter.SearchTerm,
+                       startDate = Model.SearchFilter.StartDate.ToNullableShortDateStringOrNull(),
+                       endDate = Model.SearchFilter.EndDate.ToNullableShortDateStringOrNull(),
+                       billStartDate = Model.SearchFilter.BillStartDate.ToNullableShortDateStringOrNull(),
+                       billEndDate = Model.SearchFilter.BillEndDate.ToNullableShortDateStringOrNull(),
+                       sort = Model.SearchFilter.SortColumn,
+                       sortdir = Model.SearchFilter.SortDirection
+                   }))
+                </div>
+            }
+        }
+        else
+        {
+            <div class="alert alert-dark" role="alert">
+                There are no recods to show
+            </div>
+        }
+    </div>
+</div>

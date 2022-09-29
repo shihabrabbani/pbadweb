@@ -1,0 +1,118 @@
+﻿@inject IConfiguration Configuration
+@model pbAd.Web.ViewModels.Home.DashboardHomeViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var version = Configuration.GetSection("Proshar")["Version"];
+}
+@section BookingWidget{
+    <div class="steps">
+        <ul>
+            <li class="active">
+                <span>1</span>
+                Start
+            </li>
+            <li>
+                <span>2</span>
+                COMPOSE AD
+            </li>
+            <li>
+                <span>3</span>
+                PAYMENT
+            </li>
+        </ul>
+    </div>
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="advertise-img">
+                    <img src="img/Classified-Text-6.jpg">
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="advertise-content">
+                    <h4>ক্ল্যাসিফাইড টেক্সট বিজ্ঞাপন</h4>
+                    <p>শব্দ-ভিত্তিক বিজ্ঞাপন দিতে এখানে <span><a href="/adbook/booknow">ক্লিক</a></span> করুন</p>
+                    @*<a href="/adbook/booknow" class="btn btn-teal">BOOK NOW</a>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="advertise-img">
+                    <img src="img/Classified Display-3.jpg">
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="advertise-content">
+                    <h4>ক্ল্যাসিফাইড ডিসপ্লে বিজ্ঞাপন</h4>
+                    <p>বিয়েশাদি, জন্মদিন, বিয়েবার্ষিকী, শোক সংবাদ ইত্যাদির বিজ্ঞাপন দিতে এখানে <span><a href="/bookclasssifieddisplayad/booknow">ক্লিক</a></span> করুন </p>
+                    @*<a href="/bookclasssifieddisplayad/booknow" class="btn btn-teal">BOOK NOW</a>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="advertise-img">
+                    <img src="img/Privet.jpg">
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="advertise-content">
+                    <h4>প্রাইভেট ডিসপ্লে বিজ্ঞাপন</h4>
+                    <p>বিভিন্ন প্রতিষ্ঠানের বা পণ্যের বিজ্ঞাপন দিতে এখানে <span><a href="/bookprivatedisplayad/booknow">ক্লিক</a></span> করুন</p>
+                    @*<a href="/bookprivatedisplayad/booknow" class="btn btn-teal">BOOK NOW</a>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="advertise-img">
+                    <img src="img/Government-1.jpg">
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="advertise-content">
+                    <h4>সরকারি বিজ্ঞাপন</h4>
+                    <p>সরকারি প্রতিষ্ঠানের দরপত্র, নিয়োগ ইত্যাদির বিজ্ঞাপন দিতে এখানে <span><a href="/bookgovtprivatedisplayad/booknow">ক্লিক</a></span> করুন</p>
+                    @*<a href="/bookgovtprivatedisplayad/booknow" class="btn btn-teal">BOOK NOW</a>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="advertise-img">
+                    <img src="img/Digital-Ad.jpg">
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="advertise-content">
+                    <h4>ডিজিটাল বিজ্ঞাপন</h4>
+                    <p>অনলাইনে বিজ্ঞাপন দিতে এখানে <span><a href="/bookdigitaldisplayad/booknow">ক্লিক</a></span> করুন</p>
+                    @*<a href="/bookdigitaldisplayad/booknow" class="btn btn-teal">BOOK NOW</a>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+
+}

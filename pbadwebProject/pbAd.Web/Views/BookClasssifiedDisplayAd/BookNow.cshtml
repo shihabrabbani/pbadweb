@@ -1,0 +1,238 @@
+﻿@inject IConfiguration Configuration
+
+@model pbAd.Web.ViewModels.BookClasssifiedDisplayAds.BookClasssifiedDisplayAdViewModel
+@{
+    ViewData["Title"] = "Book Classified Display Ad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var version = Configuration.GetSection("Proshar")["Version"];
+
+    var userGroup = User.Claims.FirstOrDefault(c => c.Type == "GroupId").Value;
+    var canViewCRM = userGroup == UserGroupConstants.CRM_User.ToString();
+
+    var toggleShowHide = canViewCRM ? "d-none" : "";
+}
+
+@section BookingWidget{
+    <div class="steps">
+        <ul>
+            <li class="active">
+                <span>1</span>
+                Start
+            </li>
+            <li class="active">
+                <span>2</span>
+                COMPOSE AD
+            </li>
+            <li>
+                <span>3</span>
+                PAYMENT
+            </li>
+        </ul>
+    </div>
+}
+
+<div class="form-wizard">
+    <div class="myContainer">
+        @using (Html.BeginForm("booknow", "bookclasssifieddisplayad", FormMethod.Post, new { @role = "form", @class = "form-container", @id = "form-book-classified-display-ad" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.TotalTitleWordCount)
+            @Html.HiddenFor(model => model.TotalAdContentWordCount)
+            @Html.HiddenFor(model => model.EstimatedTotal)
+            @Html.HiddenFor(model => model.PerColumnInchRate)
+            @Html.HiddenFor(model => model.MaxTitleWords)
+            @Html.HiddenFor(model => model.MaxContentWords)
+            @Html.Hidden("isEnteredMaxWords", 0)
+            @Html.Hidden("previousTitle")
+            @Html.Hidden("previousAdCompose")
+            @Html.Hidden("UserGroup", userGroup)
+            @Html.HiddenFor(model => model.DatesBasedOffer)
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.DropDownListFor(m => m.CategoryId, Model.CategoryDropdownList, "Select Category", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.DropDownListFor(m => m.SubCategoryId, new List<SelectListItem>(), "Select Sub Category", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div>
+                                @Html.TextBoxFor(model => model.Title, new { @class = "form-control", @placeholder = "Title", @autocomplete = "off" })
+                                @Html.ValidationMessageFor(model => model.Title)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="ad-compose">
+                                <div class="btn compose-ad">Compose Ad Matter</div>
+                                @Html.TextAreaFor(model => model.AdContent, new { @rows = "9", @class = "adfield", @id = "abcdfield", @placeholder = "start typing your ad here" })
+                                <div class="line-cost">
+                                    <!--<p class="mb-2">Ad Rate [BDT]: <span class="ad-rate-inch">@Model.DefaultInchRate</span></p>-->
+                                    <p class="mb-2">Estimated Cost [BDT]:<span class="esitmated-cost-amount">0</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="btn btn-teal compose-ad" style="padding-bottom:17px;">Upload Photo</div>
+                                    <input data-show-remove="false" type="file" class="dropify" onchange="classifiedDisplayManager.loadPhotoInPreview(this);"
+                                           id="ImageContent" name="ImageContent" />
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="CompleteMatter" name="CompleteMatter" value="true" />
+                                            <label class="custom-control-label" for="CompleteMatter">Complete Matter</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="other-info">
+                        <div class="btn btn-teal compose-ad">other Information</div>
+                        <div class="ad-editer">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col-md-12">
+                                    @if (canViewCRM)
+                                    {
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                @Html.TextBoxFor(model => model.AgencyAutoComplete, new { @class = "form-control", @placeHolder = "Agency" })
+                                                @Html.HiddenFor(model => model.AgencyId)
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="Personal" name="Personal" value="true" />
+                                                        <label class="custom-control-label" for="Personal">Personal</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                    <div class="row section-advitiser @toggleShowHide">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    @Html.TextBoxFor(model => model.AdvertiserName, new { @class = "form-control", autocomplete = "off", @placeholder = "Advertiser" })
+                                                    @Html.ValidationMessageFor(model => model.AdvertiserName)
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="input-group mb-3">
+                                                        @Html.TextBoxFor(model => model.AdvertiserContactNumber, new { @class = "form-control", autocomplete = "off", @placeholder = "Contact Number" })
+                                                    </div>
+
+                                                    @Html.ValidationMessageFor(model => model.AdvertiserContactNumber)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Remarks)
+                                        @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Remarks)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="form-check form-check-inline">
+                        <input checked="checked" class="form-check-input" type="radio" name="AdColumnInch" id="@ClassifiedDisplayColumnInchConstants.Inch_1" value="@ClassifiedDisplayColumnInchConstants.Inch_1">
+                        <label class="form-check-label" for="@ClassifiedDisplayColumnInchConstants.Inch_1">1 inch</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="AdColumnInch" id="@ClassifiedDisplayColumnInchConstants.Inch_1_5" value="@ClassifiedDisplayColumnInchConstants.Inch_1_5">
+                        <label class="form-check-label" for="@ClassifiedDisplayColumnInchConstants.Inch_1_5">1.5 inch</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="AdColumnInch" id="@ClassifiedDisplayColumnInchConstants.Inch_2" value="@ClassifiedDisplayColumnInchConstants.Inch_2">
+                        <label class="form-check-label" for="@ClassifiedDisplayColumnInchConstants.Inch_2">2 inch</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="AdColumnInch" id="@ClassifiedDisplayColumnInchConstants.Inch_2_5" value="@ClassifiedDisplayColumnInchConstants.Inch_2_5">
+                        <label class="form-check-label" for="@ClassifiedDisplayColumnInchConstants.Inch_2_5">2.5 inch</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="AdColumnInch" id="@ClassifiedDisplayColumnInchConstants.Inch_3" value="@ClassifiedDisplayColumnInchConstants.Inch_3">
+                        <label class="form-check-label" for="@ClassifiedDisplayColumnInchConstants.Inch_3">3 inch</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="AdColumnInch" id="@ClassifiedDisplayColumnInchConstants.Inch_3_5" value="@ClassifiedDisplayColumnInchConstants.Inch_3_5">
+                        <label class="form-check-label" for="@ClassifiedDisplayColumnInchConstants.Inch_3_5">3.5 inch</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="AdColumnInch" id="@ClassifiedDisplayColumnInchConstants.Inch_4" value="@ClassifiedDisplayColumnInchConstants.Inch_4">
+                        <label class="form-check-label" for="@ClassifiedDisplayColumnInchConstants.Inch_4">4 inch</label>
+                    </div>
+                    <div class="btn btn-teal compose-ad">Ad Preview</div>
+                    <div class="add-preview">
+                        <div class="bdr">
+                            <div class="addpreview">
+                                @*don't delete this*@
+                            </div>
+                            <div class="con" style="padding: 5px;" id="mainAddText">
+                                <div class="ad-preview classified-display-ad-preview-container clsified-display-prev">
+                                    <p class="classified-display-title text-center font-weight-bolder mb-1">Title content here...</p>
+                                    <div class="img-thumbnail cls-dis-photoframe image-content-in-preview d-none">
+                                    </div>
+                                    <p class="classified-display-content">Ad Content here</p>
+                                </div>
+                            </div>
+                            <div class="note">Font size in the preview is not as per scale. Actual word/lines may vary based on selected enhancements.</div>
+                        </div>
+                    </div>
+
+                    <div class="add-preview">
+                        <div class="btn btn-teal compose-ad">Date Based Offer</div>
+                        <div class="bdr">
+                            <div class="rate" id="rate">
+                                <!--Add here date picker -->
+                                <div class="input-group input-dateranged">
+                                    <input type="text" autocomplete="off" class="form-control prs-datepicker" id="DateBasedOffer" placeholder="Select Date">
+                                    <button class="btn btn-teal btn-date-based-offer" type="button" style="margin:0px 10px;color:white;">ADD</button>
+                                </div>
+                                <div class="date-box date-based-offer-container mt-1">
+                                    <span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> No dates selected</span>
+                                </div>
+                                <hr />
+                                <div class="date-box" style="padding-top:10px;">
+                                    <p>Discount: <span class="discount-offer">0</span>%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-teal btn-make-payment" style="margin:10px 0px;">MAKE PAYMENT <i class="fa fa-long-arrow-right"></i></button>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+</div>
+<!--  -->
+
+@section Scripts{
+    <link rel="stylesheet" type="text/css" href="~/css/adbook.css?v=@version">
+    <script src="~/js/book-classified-display-ads/bookClassifiedDisplayAdManager.js?v=@version"></script>
+}

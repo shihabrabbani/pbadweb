@@ -1,0 +1,21 @@
+﻿@inject IConfiguration Configuration
+@model pbAd.Web.ViewModels.Account.LoginViewModel
+
+@{
+    ViewData["Title"] = "Terms & Conditions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var version = Configuration.GetSection("Proshar")["Version"];
+}
+
+<div class="row">
+    <div class="col-md-8">
+
+        <h3> <i class="fa fa-lock" aria-hidden="true"></i> Terms and Conditions</h3>
+
+    </div>
+</div>
+
+
+@section Scripts{
+
+}

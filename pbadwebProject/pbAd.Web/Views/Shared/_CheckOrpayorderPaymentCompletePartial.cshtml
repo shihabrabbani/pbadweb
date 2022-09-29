@@ -1,0 +1,37 @@
+﻿
+@model pbAd.Web.ViewModels.Checkout.PaymentViewModel
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.CheckInfo)
+            @Html.TextBoxFor(model => model.CheckInfo, new { @class = "form-control", @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.CheckInfo)
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.NetPayable)
+            @Html.TextBoxFor(model => model.NetPayable, new { @class = "form-control", @readonly = "readonly", @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.NetPayable)
+        </div>
+    </div>
+   
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.CheckOrPayorderAmount)
+            @Html.TextBoxFor(model => model.CheckOrPayorderAmount, new { @class = "form-control", @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.CheckOrPayorderAmount)
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.BankInfo)
+            @Html.TextBoxFor(model => model.BankInfo, new { @class = "form-control", @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.BankInfo)
+        </div>
+    </div>
+</div>
+

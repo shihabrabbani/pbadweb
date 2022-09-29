@@ -1,0 +1,195 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Service\\pbAd.Service.csproj": {}
+  },
+  "projects": {
+    "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Core\\pbAd.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Core\\pbAd.Core.csproj",
+        "projectName": "pbAd.Core",
+        "projectPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Core\\pbAd.Core.csproj",
+        "packagesPath": "C:\\Users\\Arif Rabbani\\.nuget\\packages\\",
+        "outputPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Arif Rabbani\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Data\\pbAd.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Data\\pbAd.Data.csproj",
+        "projectName": "pbAd.Data",
+        "projectPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Data\\pbAd.Data.csproj",
+        "packagesPath": "C:\\Users\\Arif Rabbani\\.nuget\\packages\\",
+        "outputPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Arif Rabbani\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Service\\pbAd.Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Service\\pbAd.Service.csproj",
+        "projectName": "pbAd.Service",
+        "projectPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Service\\pbAd.Service.csproj",
+        "packagesPath": "C:\\Users\\Arif Rabbani\\.nuget\\packages\\",
+        "outputPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Service\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Arif Rabbani\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Core\\pbAd.Core.csproj": {
+                "projectPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Core\\pbAd.Core.csproj"
+              },
+              "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Data\\pbAd.Data.csproj": {
+                "projectPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Data\\pbAd.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.AspNetCore": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.29, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.29, )"
+            },
+            "X.PagedList.Mvc.Core": {
+              "target": "Package",
+              "version": "[8.4.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

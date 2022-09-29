@@ -1,0 +1,25 @@
+﻿@inject IConfiguration Configuration
+@model AdBookingOrderListViewModel
+
+@{
+    ViewData["Title"] = "Checkout Cancel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var version = Configuration.GetSection("Proshar")["Version"];
+}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="container">
+            <div class="jumbotron" style="padding: 20px">
+                <div class="text-center">
+                    <h2><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Your checkout has been Cancelled. </h2>
+                    <h3>Thanks for staying with us</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+}
+

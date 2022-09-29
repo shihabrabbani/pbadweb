@@ -1,0 +1,77 @@
+﻿
+@model pbAd.Web.ViewModels.Checkout.PaymentViewModel
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <div class="card">
+                <img class="card-img-top logo-direct-payment"
+                     PaymentMethod="@PaymentMethodConstants.bKash"
+                     src="/img/logo-bKash.png" alt="Card image cap">
+            </div>
+        </div>
+    </div>
+    @*<div class="col-md-4">
+        <div class="form-group">
+            <div class="card">
+                <img class="card-img-top logo-direct-payment"
+                     PaymentMethod="@PaymentMethodConstants.Rocket"
+                     src="/img/logo-rocket.png" alt="Card image cap">
+            </div>
+        </div>
+    </div>*@
+    <div class="col-md-4">
+        <div class="form-group">
+            <div class="card">
+                <img class="card-img-top logo-direct-payment"
+                     PaymentMethod="@PaymentMethodConstants.Nogod"
+                     src="/img/logo-nogod.png" alt="Card image cap">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-success" role="alert">
+            <p>
+                <i class="fa fa-bullhorn"></i> Please click any one of the above payment method like bKash, Rocket or Nogod. Fill the below information like mobile number that you use to send money using above payment method and then enter amount.
+                You will have a successfull message from bKash or Rocket or Nogod  with Transaction ID (Trx ID) and have to enter this Trx Id.
+                Finally Hit Submit button to complete your payment.
+            </p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentMobileNumber)
+            @Html.TextBoxFor(model => model.PaymentMobileNumber, new { @class = "form-control", @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.PaymentMobileNumber)
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.NetPayable)
+            @Html.TextBoxFor(model => model.NetPayable, new { @class = "form-control", @readonly = "readonly", @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.NetPayable)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentPaidAmount)
+            @Html.TextBoxFor(model => model.PaymentPaidAmount, new { @class = "form-control", @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.PaymentPaidAmount)
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentTrxId)
+            @Html.TextBoxFor(model => model.PaymentTrxId, new { @class = "form-control", @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.PaymentTrxId)
+        </div>
+    </div>
+</div>
+

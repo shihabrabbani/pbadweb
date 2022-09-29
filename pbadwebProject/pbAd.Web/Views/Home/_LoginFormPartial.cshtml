@@ -1,0 +1,41 @@
+﻿
+@model LoginViewModel
+
+<div class="form-container sign-in-container">
+
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @role = "form", @id = "formLogin", @utocomplete = "off" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <h1>Sign in</h1>
+
+        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @placeholder = "Username", @autocomplete = "off" })
+        @Html.ValidationMessageFor(model => model.Username)
+
+        <div id="show_hide_password-1">
+            @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @type = "password", @placeholder = "Password", @autocomplete = "off" })
+            <a href="#"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+
+        <a href="/otprequest">Forgot your password?</a>
+        <button type="submit" class="btn-login btn-teal">Sign In</button>
+    }
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#show_hide_password-1 a").on('click', function (event) {
+            event.preventDefault();
+            if ($('#show_hide_password-1 input').attr("type") == "text") {
+                $('#show_hide_password-1 input').attr('type', 'password');
+                $('#show_hide_password-1 i').addClass("fa-eye-slash");
+                $('#show_hide_password-1 i').removeClass("fa-eye");
+            } else if ($('#show_hide_password-1 input').attr("type") == "password") {
+                $('#show_hide_password-1 input').attr('type', 'text');
+                $('#show_hide_password-1 i').removeClass("fa-eye-slash");
+                $('#show_hide_password-1 i').addClass("fa-eye");
+            }
+        });
+    });
+</script>

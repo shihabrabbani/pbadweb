@@ -1,0 +1,77 @@
+﻿
+@inject IConfiguration Configuration
+@model pbAd.Web.ViewModels.Checkout.PaymentViewModel
+@{
+    ViewData["Title"] = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var version = Configuration.GetSection("Proshar")["Version"];
+
+    Model.CardPaymentUrl = $"/checkout/classifiedtext/{Model.MasterId}/payment-complete/{Model.BookingNo}/card";
+}
+
+@section BookingWidget{
+    <div class="steps">
+        <ul>
+            <li class="active">
+                <span>1</span>
+                Start
+            </li>
+            <li class="active">
+                <span>2</span>
+                COMPOSE AD
+            </li>
+            <li class="active">
+                <span>3</span>
+                PAYMENT
+            </li>
+        </ul>
+    </div>
+}
+
+<div class="home-content">
+    <div class="container">
+        @using (Html.BeginForm("PaymentComplete", "Checkout", FormMethod.Post, new { @role = "form", @class = "needs-validation", @id = "form-checkout-complete-payment" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.MasterId)
+            @Html.HiddenFor(model => model.BookingNo)
+            @Html.HiddenFor(model => model.PaymentMethod)
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="PaymentType" id="@CheckoutPaymentTypeConstants.Direct" value="@CheckoutPaymentTypeConstants.Direct">
+                        <label class="form-check-label" for="@CheckoutPaymentTypeConstants.Direct">@CheckoutPaymentTypeConstants.GetText(CheckoutPaymentTypeConstants.Direct)</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="PaymentType" id="@CheckoutPaymentTypeConstants.Card" value="@CheckoutPaymentTypeConstants.Card">
+                        <label class="form-check-label" for="@CheckoutPaymentTypeConstants.Card">@CheckoutPaymentTypeConstants.GetText(CheckoutPaymentTypeConstants.Card)</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="PaymentType" id="@CheckoutPaymentTypeConstants.Check_Or_Payorder" value="@CheckoutPaymentTypeConstants.Check_Or_Payorder">
+                        <label class="form-check-label" for="@CheckoutPaymentTypeConstants.Check_Or_Payorder">@CheckoutPaymentTypeConstants.GetText(CheckoutPaymentTypeConstants.Check_Or_Payorder)</label>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <section-payment class="section-direct-payment">
+                @await Html.PartialAsync("_DirectPaymentCompletePartial", Model)
+            </section-payment>
+            <section-payment class="section-card-payment">
+                @await Html.PartialAsync("_CardPaymentCompletePartial", Model)
+            </section-payment>
+            <section-payment class="section-check-or-payorder-payment">
+                @await Html.PartialAsync("_CheckOrpayorderPaymentCompletePartial", Model)
+            </section-payment>
+
+            <button type="submit" class="btn btn-teal btn-continue-payment">Submit</button>
+        }
+    </div>
+</div>
+
+@section Scripts{
+    <link href="~/css/payment.css?v=@version" rel="stylesheet" />
+    <script src="~/js/checkouts/paymentCompleteManager.js?v=@version"></script>
+}
+

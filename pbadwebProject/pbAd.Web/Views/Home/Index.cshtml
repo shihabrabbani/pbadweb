@@ -1,0 +1,53 @@
+﻿@inject IConfiguration Configuration
+@model pbAd.Web.ViewModels.Account.LoginViewModel
+
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var version = Configuration.GetSection("Proshar")["Version"];
+
+    var isAuthenticated = User.Identity.IsAuthenticated;
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="carousel carousel-main" data-flickity='{"pageDots": false }'>
+            <div class="carousel-cell"><img src="img/Home-Page.jpg" /></div>
+            <div class="carousel-cell"><img src="img/Home-Page-2.jpg" /></div>
+            <div class="carousel-cell"><img src="img/Home-Page-3.jpg" /></div>
+            <div class="carousel-cell"><img src="img/Home-Page-4.jpg" /></div>
+            <div class="carousel-cell"><img src="img/Home-Page-5.jpg" /></div>
+            <div class="carousel-cell"><img src="img/Home-Page-6.jpg" /></div>
+        </div>
+
+        <div class="login-text">
+            
+
+            <p>আজকের পত্রিকার ছাপা বা অনলাইন সংস্করণে বিজ্ঞাপন দেওয়ার মাধ্যমের নাম হচ্ছে প্রসার।</p>
+            <p>বাংলাদেশের যেকোনো জায়গা থেকে ইন্টারনেটে যুক্ত ডেস্কটপ বা ল্যাপটপ কম্পিউটার অথবা স্মার্ট ফোন ব্যবহার করে খুব সহজেই আজকের পত্রিকার ছাপা বা অনলাইন সংস্করণে যেকোনো ধরনের বিজ্ঞাপন দিন মাত্র ৩টি ধাপে:</p>
+            <p>
+                <ul>
+                    <li>১. আপনার বিজ্ঞাপনটি তৈরি বা আপলোড করুন</li>
+                    <li>২. বিজ্ঞাপন ছাপানোর দিন, পত্রিকার সংস্করন ইত্যাদি নির্দিষ্ট করুন</li>
+                    <li>৩. পেমেন্ট করুন</li>
+                </ul>
+
+            </p>
+            <p> যেকোনো সমস্যায় বা সহযোগিতার জন্য ০১৩২৩২৩২৩২৯ নম্বরে ফোন করুন (সকাল ১০টা থেকে সন্ধ্যা ৭টা পর্যন্ত)।</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        @if (!isAuthenticated)
+        {
+            @await Html.PartialAsync("_LoginFormPartial", Model)
+        }
+    </div>
+</div>
+
+
+@section Scripts{
+    <link rel="stylesheet" type="text/css" href="~/css/login.css?v=@version">
+    <script src="~/plugins/flikity-slider/flikity-slider.js"></script>
+    <script src="~/js/accounts/accountManager.js?v=@version"></script>
+}

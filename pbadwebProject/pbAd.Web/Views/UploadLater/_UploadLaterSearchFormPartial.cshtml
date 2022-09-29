@@ -1,0 +1,20 @@
+﻿
+@model AdBookingReportSearchFilter
+
+@using (Html.BeginForm("List", "UploadLater", FormMethod.Post, new { @role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="card">
+        <div class="card-body">
+            <div class="form-inline">
+                <div class="form-group mb-2">
+                    <label for="SearchTerm" class="sr-only">Booking Number</label>
+                    @Html.TextBoxFor(model => model.SearchTerm, new { @class = "form-control", @placeholder = "Booking Number" })
+                </div>
+                <button type="submit" class="btn btn-teal  mx-sm-3 mb-2"> <i class="fa fa-search"></i> Search</button>
+            </div>
+        </div>
+    </div>
+   
+    <hr />
+}

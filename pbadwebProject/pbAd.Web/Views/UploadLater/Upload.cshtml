@@ -1,0 +1,85 @@
+﻿@inject IConfiguration Configuration
+@model pbAd.Web.ViewModels.AdBookingReports.AdBookingUploadLaterViewModel
+
+@{
+    ViewData["Title"] = "Upload Later";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var version = Configuration.GetSection("Proshar")["Version"];
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        @using (Html.BeginForm("Upload", "UploadLater", FormMethod.Post, new { @role = "form", @class = "form-container", @id = "form-upload-later" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.AutoId)
+            @Html.HiddenFor(model => model.BookingNumber)
+            @Html.HiddenFor(model => model.AdType)
+           
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-5">Booking#</dt>
+                                <dd class="col-sm-7">@Model.BookingNumber</dd>
+
+                                <dt class="col-sm-5">Ad Type</dt>
+                                <dd class="col-sm-7">@Model.AdType</dd>
+
+                                <dt class="col-sm-5 text-truncate">Net Payable</dt>
+                                <dd class="col-sm-7">@Model.NetPayable</dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-5">Booking Date</dt>
+                                <dd class="col-sm-7">@Model.BookingDate.ToString("dd-MMM-yyyy h:mm tt")</dd>
+
+                                <dt class="col-sm-5">Booked By</dt>
+                                <dd class="col-sm-7">@Model.BookedBy</dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.BillDate,new { @class= "font-weight-bold" })
+                                @Html.TextBoxFor(m => m.BillDate, new { @class = "form-control prs-datepicker" })
+                                @Html.ValidationMessageFor(model => model.BillDate)
+                            </div>
+                        </div>                        
+                    </div>
+
+                </div>
+            </div>
+            <hr />
+            
+            <h5><ins>Upload Files</ins></h5>
+            <div class="row">
+                <div class="col-md-5">
+                    <span style="padding-bottom: 0px" class="btn btn-teal section-add-files">
+                        <i class="fa fa-plus add-icon"></i>
+                        <label for="ImageContents">Add files...</label>
+                        <input hidden type="file" id="ImageContents" name="ImageContents" multiple />
+                    </span>
+                </div>
+            </div>
+            <div class="overflow-auto mt-1">
+                <!-- The table listing the files available for upload/download -->
+                <table class="table table-striped tbl-uploded-files">
+                    <tbody class="uploaded-files">
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn btn-teal btn-upload" type="submit" style="margin:10px 0px;"><i class="fa fa-upload"></i> Upload </button>
+        }
+    </div>
+</div>
+
+@section Scripts{    
+    <script src="~/js/order/uploadLaterManager.js?v=@version"></script>
+}
+

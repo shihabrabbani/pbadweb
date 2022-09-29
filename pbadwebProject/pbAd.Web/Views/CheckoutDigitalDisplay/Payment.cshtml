@@ -1,0 +1,330 @@
+﻿@inject IConfiguration Configuration
+@model pbAd.Web.ViewModels.Checkout.CheckoutDigitalDisplayViewModel
+@{
+    ViewData["Title"] = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var version = Configuration.GetSection("Proshar")["Version"];
+
+    var userGroup = User.Claims.FirstOrDefault(c => c.Type == "GroupId").Value;
+    var canViewCRM = userGroup == UserGroupConstants.CRM_User.ToString();
+    var canViewCorrespondent = userGroup == UserGroupConstants.Correspondent.ToString();
+}
+
+
+<div class="home-content">
+    <div class="container">
+        @using (Html.BeginForm("Payment", "CheckoutDigitalDisplay", FormMethod.Post, new { @role = "form", @class = "needs-validation", @id = "form-digital-display-checkout-payment" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.ABDigitalDisplayId)
+            @Html.HiddenFor(model => model.BookingNo)
+            @Html.HiddenFor(model => model.BillDate)
+            @Html.HiddenFor(model => model.AgencyId)
+            @Html.HiddenFor(model => model.CollectorId)
+
+            @Html.Hidden("IsCRMUser", canViewCRM)
+
+            <div class="row checkout">
+                <div class="col-sm-8 chk_left">
+                    <div class="row">
+                        <div class="col-12 order">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div>
+                                        <div class="order_icon">
+                                            <i class="fa fa-file-text-o"></i>
+                                        </div>
+                                        <h5>Order Summary</h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="custom-td">Brand </td>
+                                                <td class="price">@Model.BrandName </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="custom-td">Category </td>
+                                                <td class="price">@Model.CategoryName </td>
+                                            </tr>
+
+                                            @if (!string.IsNullOrWhiteSpace(Model.AgencyName))
+                                            {
+                                                <tr>
+                                                    <td class="custom-td">Agency </td>
+                                                    <td class="price">@Model.AgencyName </td>
+                                                </tr>
+                                            }
+                                            @if (!string.IsNullOrWhiteSpace(Model.AdvertiserName))
+                                            {
+                                                <tr>
+                                                    <td class="custom-td">Advertiser </td>
+                                                    <td class="price">@Model.AdvertiserName </td>
+                                                </tr>
+                                            }
+                                            <tr>
+                                                <td class="custom-td">Total Qty </td>
+                                                <td class="price">@Model.ABDigitalDisplay.TotalQty </td>
+                                            </tr>
+                                            @if (!Model.ABDigitalDisplay.UploadLater)
+                                            {
+                                                var mediaScreen = Model.MediaContentListing.FirstOrDefault();
+                                                <tr>
+                                                    <td class="custom-td">Media Screen </td>
+                                                    <td class="price">@mediaScreen.ScreenType </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <div>
+                                        <div class="order_icon">
+                                            <i class="fa fa-file-text-o"></i>
+                                        </div>
+                                        <h5>Order Details</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered table-hover" id="tbleDigitalDisplayDetail">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>Page</th>
+                                                <th>Position</th>
+                                                <th>Unit</th>
+                                                <th>Qty</th>
+                                                <th>Per Unit Rate</th>
+                                                <th>Publish Date Range</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.DigitalDisplayDetailListing)
+                                            {
+                                                var dateRange = $@"{item.PublishDateStart.ToString("dd-MMM-yyyy hh:mm tt")} - {item.PublishDateEnd.ToString("dd-MMM-yyyy hh:mm tt")}";
+                                                <tr>
+                                                    <td>
+                                                        @item.DigitalPage.DigitalPageName
+                                                    </td>
+                                                    <td>
+                                                        @item.DigitalPagePosition.DigitalPagePositionName
+                                                    </td>
+                                                    <td>
+                                                        @item.DigitalAdUnitType.DigitalAdUnitTypeName
+                                                    </td>
+                                                    <td>
+                                                        @item.AdQty
+                                                    </td>
+                                                    <td>
+                                                        @item.PerUnitRate
+                                                    </td>
+                                                    <td>
+                                                        <small> @dateRange</small>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <div>
+                                        <div class="order_icon">
+                                            <i class="fa fa-file-text-o"></i>
+                                        </div>
+                                        <h5>Uploaded Files</h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    @if (!Model.ABDigitalDisplay.UploadLater)
+                                    {
+                                        <table class="table table-striped tbl-uploded-files">
+                                            <tbody class="uploaded-files">
+                                                @foreach (var item in Model.MediaContentListing)
+                                                {
+                                                    var scale = "fa-4x";
+                                                    var fileName = System.IO.Path.GetFileName(item.OriginalImageUrl);
+                                                    var extension = System.IO.Path.GetExtension(item.OriginalImageUrl).Replace(".", "");
+
+                                                    if (extension.IsImageFile())
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                <img style="width: 65px; height: 70px;" src="@item.OriginalImageUrl" alt="No Photo Found" />
+                                                            </td>
+                                                            <td>
+                                                                <span> @fileName</span>
+                                                            </td>
+
+                                                            <td>
+                                                                <a target="_blank" class="btn btn-sm btn-teal" href="@item.OriginalImageUrl"><i class="fa fa-cloud-download"></i> Download</a>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                    else
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                <span> @Html.Raw(FileIconHelper.GetFileIcon(extension, scale))</span>
+                                                            </td>
+
+                                                            <td>
+                                                                <span> @fileName</span>
+                                                            </td>
+
+                                                            <td>
+                                                                <a target="_blank" class="btn btn-sm btn-teal" href="@item.OriginalImageUrl"><i class="fa fa-cloud-download"></i> Download</a>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-danger">Upload Later</span>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <div>
+                                        <div class="order_icon">
+                                            <i class="fa fa-file-text-o"></i>
+                                        </div>
+                                        <h5>Remarks</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    @Html.Raw(Model.Remarks)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 order-md-2 mb-4">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            @if (canViewCRM)
+                            {
+                                var toggleCashChecked = Model.PaymentModeId == PaymentModeConstants.Cash ? "checked='checked'" : "";
+                                var toggleCreditChecked = Model.PaymentModeId == PaymentModeConstants.Credit ? "checked='checked'" : "";
+
+                                <span class="text-muted">Payment Mode</span>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" @toggleCashChecked value="@PaymentModeConstants.Cash" id="@PaymentModeConstants.Cash" name="PaymentModeId" class="custom-control-input">
+                                    <label class="custom-control-label" for="@PaymentModeConstants.Cash">Cash</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" @toggleCreditChecked value="@PaymentModeConstants.Credit" id="@PaymentModeConstants.Credit" name="PaymentModeId" class="custom-control-input">
+                                    <label class="custom-control-label" for="@PaymentModeConstants.Credit">Credit</label>
+                                </div>
+                            }
+                            else if (canViewCorrespondent)
+                            {
+                                <input type="radio" checked="checked" value="@PaymentModeConstants.SSL" id="@PaymentModeConstants.SSL" name="PaymentModeId" class="d-none">
+                            }
+
+                            <a class="btn btn-teal btn-sm pull-right edit btn-edit-lg-screen" oncontextmenu="return false" href="/bookdigitaldisplayad/edit/@Model.ABDigitalDisplayId/bookingno/@Model.ABDigitalDisplay.BookingNo"><i class="fa fa-pencil-square-o"></i> Edit</a>
+
+                        </div>
+                    </div>
+
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted">Order Details</span>
+                    </h4>
+                    <ul class="list-group mb-3 order-details">
+                        <li class="list-group-item d-flex justify-content-between">
+                            <h6 class="my-0">Estimated Cost (BDT)</h6>
+                            <strong class="total-estimated-costing">@Model.ABDigitalDisplay.GrossTotal</strong>
+                        </li>
+                        @if (canViewCRM)
+                        {
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <h6 style="margin-top: 0px;" class="">Special Discount [%]</h6>
+                                <small style="float:right;margin-top: -22px;width:100px;" class="text-muted;">
+                                    ‎@Html.TextBoxFor(model => model.ManualDiscountPercentage, new { @class = "form-control text-right dis-input" })
+                                </small>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div class="custom-control custom-checkbox">
+                                    @Html.CheckBoxFor(model => model.IsFixed, new { @class = "custom-control-input", @value = "true" })
+                                    <label class="custom-control-label" for="IsFixed">Is Fixed</label>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed section-discount-amount">
+                                <h6 style="margin-top: 0px;" class="">Fixed Amount [BDT]</h6>
+                                <small style="float:right;margin-top: -22px;width:100px;" class="text-muted;">
+                                    ‎@Html.TextBoxFor(model => model.FixedAmount, new { @class = "form-control text-right dis-input" })
+                                </small>
+                            </li>
+                        }
+                        else if (canViewCorrespondent)
+                        {
+                            <li class="d-none">
+                                ‎@Html.HiddenFor(model => model.ManualDiscountPercentage)
+                            </li>
+                        }
+                        <li class="list-group-item d-flex justify-content-between">
+                            <h6 class="my-0 font-weight-bold">Total Discount [%]</h6>
+                            <strong class="total-discounts">0</strong>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <h6 class="my-0">Net Total (BDT)</h6>
+                            <strong class="total-net-amount">@Model.ABDigitalDisplay.NetAmount</strong>
+                        </li>
+                        @if ((canViewCRM && Model.ABDigitalDisplay.AgencyId > 0) || canViewCorrespondent)
+                        {
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <h6 class="my-0">Commission [BDT]</h6>
+                                <strong class="order-comission">@Model.ABDigitalDisplay.Commission</strong>
+                            </li>
+                        }
+
+                        <li class="list-group-item d-flex justify-content-between section-vat">
+                            <h6 class="my-0 font-weight-bolder">Vat (BDT)</h6>
+                            <strong class="vat-amount">0.00</strong>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <h6 class="my-0 font-weight-bolder">Net Payable (BDT)</h6>
+                            <strong class="net-payable">0.00</strong>
+                        </li>
+
+                    </ul>
+
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="AcceptTermsAndConditions" name="AcceptTermsAndConditions" value="true" />
+                        <label class="custom-control-label" for="AcceptTermsAndConditions">I Accept terms & Conditions</label>
+                    </div>
+                    <button class="btn btn-teal btn-lg btn-block btn-continue-payment" type="submit">Continue to checkout</button>
+                </div>
+
+
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts{
+    <link href="~/css/payment.css?v=@version" rel="stylesheet" />
+    <script src="~/js/checkouts/checkoutDigitalDisplayManager.js?v=@version"></script>
+}

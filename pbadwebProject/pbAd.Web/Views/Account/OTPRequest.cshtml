@@ -1,0 +1,32 @@
+﻿
+@model OTPRequestModel
+
+@{
+    ViewData["Title"] = "Change Password";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+        <div class="form-container sign-in-container">
+            @using (Html.BeginForm("OTPRequest", "Account", FormMethod.Post, new { @role = "form", @class = "forgot box", @id = "formOtpGenerate", @utocomplete = "off" }))
+            {
+                @Html.AntiForgeryToken()
+                <h3>Change Password</h3>
+
+                @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @placeholder = "Username", @autocomplete = "off" })
+                @Html.ValidationMessageFor(model => model.Username)
+
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email", @autocomplete = "off" })
+                @Html.ValidationMessageFor(model => model.Email)
+
+                <button type="submit" class="btn-login btn-teal btn-generate-otp">Generate OTP</button>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <link href="~/css/login.css" rel="stylesheet" />
+    <script src="~/js/accounts/accountManager.js"></script>
+}

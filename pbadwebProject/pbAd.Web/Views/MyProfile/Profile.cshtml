@@ -1,0 +1,42 @@
+﻿@inject IConfiguration Configuration
+@model pbAd.Web.ViewModels.Users.UserViewModel
+
+@{
+    ViewData["Title"] = "My Profie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var version = Configuration.GetSection("Proshar")["Version"];
+}
+
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="profile-card-4 z-depth-3">
+            <div class="card">
+                @await Html.PartialAsync("_LeftProfileInfoPartial")
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="card z-depth-3">
+            <div class="card-body">
+                <ul class="nav nav-pills nav-pills-primary nav-justified">
+                    <li class="nav-item">
+                        <a href="javascript:void();" data-target="#profile" data-toggle="pill" class="nav-link active show"><i class="icon-user"></i> <span class="hidden-xs">Profile</span></a>
+                    </li>
+                </ul>
+                <div class="tab-content p-3">
+                    <div class="tab-pane active show" id="profile">
+                        @await Html.PartialAsync("_ProfilePartial")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    <link href="~/css/login.css?v=@version" rel="stylesheet" />
+    <script src="~/js/my-profile/myProfileManager.js?v=@version"></script>
+}
+

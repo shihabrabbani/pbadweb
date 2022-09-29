@@ -1,0 +1,53 @@
+﻿
+@model pbAd.Web.ViewModels.Users.UserViewModel
+
+@{ 
+    var userGroup = Model.GroupId == UserGroupConstants.Correspondent
+        ? "Correspondent" : "CRM";
+}
+
+<div class="card-body user-body text-center rounded-top">
+    <div class="user-box">
+        <img src="~/img/avatar7.png" alt="user avatar" />
+    </div>
+    <h5 class="mb-1 text-white">@Model.FullName</h5>
+    <h6 class="text-light">@userGroup</h6>
+</div>
+<div class="card-body">
+    <ul class="list-group shadow-none">
+        <li class="list-group-item">
+            <div class="list-icon">
+                <i class="fa fa-phone-square"></i>
+            </div>
+            <div class="list-details">
+                <span>@Model.MobileNo</span>
+                <small>Mobile Number</small>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="list-icon">
+                <i class="fa fa-envelope"></i>
+            </div>
+            <div class="list-details">
+                <span>@Model.Email</span>
+                <small>Email Address</small>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="list-icon">
+                <i class="fa fa-globe"></i>
+            </div>
+            <div class="list-details">
+                <span>www.prosharbd.azurewebsites.com</span>
+                <small>Website Address</small>
+            </div>
+        </li>
+    </ul>    
+</div>
+
+<div class="card-footer text-center">
+    <a href="javascript:void()" class="btn-social btn-facebook waves-effect waves-light m-1"><i class="fa fa-facebook"></i></a>
+    <a href="javascript:void()" class="btn-social btn-google-plus waves-effect waves-light m-1"><i class="fa fa-google-plus"></i></a>
+    <a href="javascript:void()" class="list-inline-item btn-social btn-behance waves-effect waves-light"><i class="fa fa-behance"></i></a>
+    <a href="javascript:void()" class="list-inline-item btn-social btn-dribbble waves-effect waves-light"><i class="fa fa-dribbble"></i></a>
+</div>

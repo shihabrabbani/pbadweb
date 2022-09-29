@@ -1,0 +1,41 @@
+﻿
+@model pbAd.Web.ViewModels.Checkout.PaymentViewModel
+
+
+@Html.Hidden("hiddenSSLPaymentLink", Model.CardPaymentUrl)
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="d-flex">
+                    <h5>Pay online</h5>
+                    <div class="ml-auto text-right">
+                        <p>Verified by</p>
+                        <img style="width: 56%;" src="~/img/logo-ssl-comrz.png" />
+                    </div>
+                </div>
+
+                <div class="bg-light mt-2">
+                    <blockquote class="blockquote">
+                        <p class="p-3">Pay securely by Credit/Debit card, Internet banking or Mobile banking through SS Commerz</p>
+                    </blockquote>
+                </div>
+
+                <div class="bg-light mt-2">
+                    <blockquote class="blockquote">
+                        <p class="p-3">
+                            <span class="text-bolder">Net Payable</span> <span style="font-weight:bolder"> @Model.NetPayable</span>
+                        </p>
+                    </blockquote>
+                </div>
+
+                <div class="custom-control custom-checkbox mb-2">
+                    <input type="checkbox" class="custom-control-input" id="AcceptTermsAndConditions" name="AcceptTermsAndConditions" value="true" />
+                    <label class="custom-control-label" for="AcceptTermsAndConditions">I agree to the  <a target="_blank" href="/">terms & Conditions</a>, <a target="_blank" href="/">Refund Policy</a> and <a target="_blank" href="/">Privacy Policy</a></label>
+                </div>
+                <button type="button" class="btn btn-lg btn-block btn-teal btn-place-order">Place order</button>
+            </div>
+        </div>
+    </div>
+</div>

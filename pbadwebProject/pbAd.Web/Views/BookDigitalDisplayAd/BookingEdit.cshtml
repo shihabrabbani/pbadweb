@@ -1,0 +1,403 @@
+﻿
+@inject IConfiguration Configuration
+
+@model pbAd.Web.ViewModels.BookDigitalDisplayAds.BookDigitalDisplayAdViewModel
+@{
+    ViewData["Title"] = "Edit Digital Display";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var version = Configuration.GetSection("Proshar")["Version"];
+
+    var userGroup = User.Claims.FirstOrDefault(c => c.Type == "GroupId").Value;
+    var canViewCRM = userGroup == UserGroupConstants.CRM_User.ToString();
+
+    var toggleShowHide = canViewCRM ? "d-none" : "";
+}
+
+@section BookingWidget{
+    <div class="steps">
+        <ul>
+            <li class="active">
+                <span>1</span>
+                Start
+            </li>
+            <li class="active">
+                <span>2</span>
+                COMPOSE AD
+            </li>
+            <li>
+                <span>3</span>
+                PAYMENT
+            </li>
+        </ul>
+    </div>
+}
+
+<div class="form-wizard">
+    <div class="myContainer">
+        @using (Html.BeginForm("bookingedit", "bookdigitaldisplayad", FormMethod.Post, new { @role = "form", @class = "form-container", @id = "form-book-digital-display-ad" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.ABDigitalDisplayId)
+            @Html.HiddenFor(model => model.BookingNo)
+            @Html.HiddenFor(model => model.EstimatedTotal)
+            @Html.Hidden("HiddenAdvertiserName", Model.AdvertiserName)
+            @Html.Hidden("UserGroup", userGroup)
+            @Html.Hidden("SelectedCategoryId", Model.CategoryId)
+
+            <div class="row">
+                <div class="col-md-12 mb-4">
+                    <div class="card edit-card">
+                        <div class="border-bottom">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>Edit Private Display</h5>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <a href="/checkout/digitaldisplay/@Model.ABDigitalDisplayId/payment/@Model.BookingNo" oncontextmenu="return false" class="btn btn-sm btn-teal my-1"> <i class="fa fa-backward"></i> Back to Payment</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="main-grid compose">
+                        <div class="title_bg">
+                            <div class="cat-select contact">
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Brand <i class="fa fa-info-circle" data-toggle="tooltip" title="Type minimun 2 characters for brand name"></i></label>
+                                                    @Html.TextBoxFor(model => model.BrandAutoComplete, new { @class = "form-control", @placeholder = "Type Brand" })
+                                                    @Html.HiddenFor(model => model.BrandId)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.CategoryId)
+                                                    @Html.DropDownListFor(m => m.CategoryId, new List<SelectListItem>(), "Select Category", new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.CategoryId)
+                                                </div>
+                                            </div>
+                                            @if (canViewCRM)
+                                            {
+                                                <div class="col-md-6">
+                                                    <label>Agency <i class="fa fa-info-circle" data-toggle="tooltip" title="Type minimun 2 characters for agency"></i></label>
+                                                    @Html.TextBoxFor(model => model.AgencyAutoComplete, new { @class = "form-control", @placeHolder = "Type Agency" })
+                                                    @Html.HiddenFor(model => model.AgencyId)
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                @Html.LabelFor(model => model.AdvertiserName)
+                                                @Html.TextBoxFor(model => model.AdvertiserName, new { @class = "form-control", autocomplete = "off", @placeholder = "Advertiser Name" })
+                                                @Html.ValidationMessageFor(model => model.AdvertiserName)
+                                                @Html.HiddenFor(model => model.AdvertiserId)
+                                                @Html.Hidden("hiddenAdvertiserName", Model.AdvertiserName)
+                                            </div>
+                                            <div class="col-6">
+                                                @Html.LabelFor(model => model.AdvertiserContactNumber)
+                                                @Html.TextBoxFor(model => model.AdvertiserContactNumber, new { @class = "form-control", autocomplete = "off", @placeholder = "Contact Number" })
+                                                @Html.ValidationMessageFor(model => model.AdvertiserContactNumber)
+                                                @Html.Hidden("hiddenAdvertiserContactNumber", Model.AdvertiserContactNumber)
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="card" style="margin-top:10px">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DigitalPageId)
+                                                    @Html.DropDownListFor(m => m.DigitalPageId, Model.DigitalPageDropdownList, "Select Page", new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.DigitalPageId)
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DigitalPagePositionId)
+                                                    @Html.DropDownListFor(m => m.DigitalPagePositionId, new List<SelectListItem>(), "Select Page Position", new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.DigitalPagePositionId)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.DigitalAdUnitTypeId)
+                                                    @Html.DropDownListFor(m => m.DigitalAdUnitTypeId, Model.DigitalAdUnitTypeDropdownList, "Select Unit Type", new { @class = "form-control", @placeholder = "Publish Date Start" })
+                                                    @Html.ValidationMessageFor(model => model.DigitalAdUnitTypeId)
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.AdQty)
+                                                    @Html.TextBoxFor(m => m.AdQty, new { @class = "form-control", @placeholder = "Quantity" })
+                                                    @Html.ValidationMessageFor(model => model.AdQty)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.PublishDateStart)
+                                                            @Html.TextBoxFor(m => m.PublishDateStart, new { @class = "form-control prs-datepicker", @placeholder = "Publish Date Start" })
+                                                            @Html.ValidationMessageFor(model => model.PublishDateStart)
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>Time</label>
+                                                            @Html.TextBoxFor(m => m.PublishTimeStart, new { @class = "form-control timepicker", @placeholder = "time" })
+                                                            @Html.ValidationMessageFor(model => model.PublishDateStart)
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6">
+
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.PublishDateEnd)
+                                                            @Html.TextBoxFor(m => m.PublishDateEnd, new { @class = "form-control prs-datepicker", @placeholder = "Publish Date End" })
+                                                            @Html.ValidationMessageFor(model => model.PublishDateEnd)
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>Time</label>
+                                                            @Html.TextBoxFor(m => m.PublishTimeEnd, new { @class = "form-control timepicker", @placeholder = "time" })
+                                                            @Html.ValidationMessageFor(model => model.PublishTimeEnd)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button type="button" class="btn btn-teal btn-gd-detail"> <i class="fa fa-plus"></i> Add New</button>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table class="table table-bordered table-hover" id="tbleDigitalDisplayDetail">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th>Page</th>
+                                                            <th>Position</th>
+                                                            <th>Unit</th>
+                                                            <th>Qty</th>
+                                                            <th>Per Unit Rate</th>
+                                                            <th>Publish Date Range</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                                <p class="text-right">Estimated Cost [BDT]: <span-estimate-cost class="esitmated-cost-amount">0</span-estimate-cost></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card" style="margin-top:10px">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Remarks)
+                                                    @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Remarks)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="card" style="margin-top:10px">
+                                    <div class="card-body">
+
+                                        <h5>Upload Files</h5>
+
+                                        <div class="cat-select contact">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    @Html.LabelFor(model => model.ScreenType) :
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" @Model.CheckScreenTypeDesktop name="ScreenType" id="ScreenType_@ScreenTypeConstants.Desktop" value="@ScreenTypeConstants.Desktop">
+                                                        <label class="form-check-label" for="ScreenType_@ScreenTypeConstants.Desktop">@ScreenTypeConstants.Desktop</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" @Model.CheckScreenTypeMobile name="ScreenType" id="ScreenType_@ScreenTypeConstants.Mobile" value="@ScreenTypeConstants.Mobile">
+                                                        <label class="form-check-label" for="ScreenType_@ScreenTypeConstants.Mobile">@ScreenTypeConstants.Mobile</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="row col-md-5">
+                                                            <span style="padding-bottom: 0px" class="btn btn-teal section-add-files">
+                                                                <i class="fa fa-plus add-icon"></i>
+                                                                <label for="ImageContents">Add files...</label>
+                                                                <input hidden type="file" id="ImageContents" name="ImageContents" multiple onchange="bookDigitalDisplayAdEditManager.previewPhoto()" />
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    @Html.CheckBoxFor(model => model.UploadLater, new { @class = "custom-control-input", @value = "true" })
+                                                                    <label class="custom-control-label" for="UploadLater">Upload Later</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 overflow-auto mt-1">
+                                                    <!-- The table listing the files available for upload/download -->
+                                                    <table class="table table-striped tbl-uploded-files">
+                                                        <tbody class="uploaded-files">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            @if (Model.MediaContents != null && Model.MediaContents.Any())
+                                            {
+                                                <p class="lead">Existing Files</p>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <table class="table table-striped tbl-existing-files">
+                                                            <tbody>
+                                                                @foreach (var item in Model.MediaContents)
+                                                                {
+                                                                    var scale = "fa-4x";
+                                                                    var fileName = System.IO.Path.GetFileName(item.OriginalImageUrl);
+                                                                    var extension = System.IO.Path.GetExtension(item.OriginalImageUrl).Replace(".", "");
+
+                                                                    if (extension.IsImageFile())
+                                                                    {
+                                                                        <tr>
+                                                                            <td>
+                                                                                <img style="width: 65px; height: 70px;" src="@item.OriginalImageUrl" alt="No Photo Found" />
+                                                                            </td>
+                                                                            <td>
+                                                                                <span class="existing-file-name" file-name="@fileName"> @fileName</span>
+                                                                            </td>
+
+                                                                            <td>
+                                                                                <button type='button' file-path='@item.OriginalImageUrl' class="btn btn-sm btn-danger cancel-file">
+                                                                                    <i class="fa fa-times"></i> Cancel
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <tr>
+                                                                            <td>
+                                                                                <span> @Html.Raw(FileIconHelper.GetFileIcon(extension, scale))</span>
+                                                                            </td>
+
+                                                                            <td>
+                                                                                <span class="existing-file-name" file-name="@fileName"> @fileName</span>
+                                                                            </td>
+
+                                                                            <td>
+                                                                                <button type='button' file-path='@item.OriginalImageUrl' class="btn btn-sm btn-danger cancel-file">
+                                                                                    <i class="fa fa-times"></i> Cancel
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    }
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-teal btn-make-payment" style="margin:10px 0px;">MAKE PAYMENT <i class="fa fa-long-arrow-right"></i></button>
+            </div>
+        }
+
+    </div>
+</div>
+<!--  -->
+
+@section Scripts{
+    <link rel="stylesheet" type="text/css" href="~/css/adbook.css?v=@version">
+    <link href="~/plugins/wicketpicker/wickedpicker.min.css" rel="stylesheet" />
+    <script src="~/plugins/wicketpicker/wickedpicker.min.js"></script>
+    <style>
+        .wickedpicker {
+            width: 112px !important;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            var options = {
+                //now: "12:35", //hh:mm 24 hour format only, defaults to current time
+                twentyFour: false,
+                //Display 24 hour format, defaults to false
+                upArrow: 'wickedpicker__controls__control-up',
+                //The up arrow class selector to use, for custom CSS
+                downArrow: 'wickedpicker__controls__control-down',
+                //The down arrow class selector to use, for custom CSS
+                close: 'wickedpicker__close',
+                //The close class selector to use, for custom CSS
+                hoverState: 'hover-state',
+                //The hover state class to use, for custom CSS
+                title: 'Ad Time',
+                //The Wickedpicker's title,
+                showSeconds: false,
+                //Whether or not to show seconds,
+                secondsInterval: 1,
+                //Change interval for seconds, defaults to 1 ,
+                minutesInterval: 1,
+                //Change interval for minutes, defaults to 1
+                beforeShow: null,
+                //A function to be called before the Wickedpicker is shown
+                show: null,
+                //A function to be called when the Wickedpicker is shown
+                clearable: false,
+                //Make the picker's input clearable (has clickable "x")
+            };
+
+            $('.timepicker').wickedpicker(options);
+        });
+    </script>
+
+    <script src="~/js/book-digital-display-ads/bookDigitalDisplayAdEditManager.js?v=@version"></script>
+}

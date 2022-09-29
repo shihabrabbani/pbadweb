@@ -1,0 +1,132 @@
+﻿@inject ICacheManagerService cacheManagerService
+@inject IWorkContext workContext
+@{
+    var currentLoggedInUser = new User();
+    var isAuthenticated = User.Identity.IsAuthenticated;
+    if (isAuthenticated)
+    {
+        currentLoggedInUser = workContext.CurrentLoggedInUser;
+    }
+    else if(ViewBag.SSLUserInfo != null)
+    {
+        currentLoggedInUser = ViewBag.SSLUserInfo as User;
+        isAuthenticated = true;
+    }
+}
+
+<!-- To activate Navbar-mobile MENU -->
+<div class="bg-dark  d-xl-none d-block">
+    <div class="container">
+        <div class="text-right py-2">
+            <button onclick="app.toggleMenu()" class="btn btn-teal rounded-0">MENU <i class="fa fa-bars"></i></button>
+        </div>
+    </div>
+</div>
+<!-- Navbar - Mobile -->
+<div id="navbar-mobile" class="bg-dark d-none">
+    <div class="container">
+        <div class="text-right mt-4">
+            <button onclick="app.toggleMenu()" class="btn btn-teal rounded-0">Close X</button>
+        </div>
+        <div id="accordion">
+            <div class="accordion-item">
+
+            </div> <!-- .accordion-item -->
+
+            <div class="accordion-item">
+                <a href="/" class="btn btn-teal btn-block rounded-0 text-left">Home</a>
+            </div> <!-- .accordion-item -->
+
+            <div class="accordion-item">
+                <a href="~/adbook/booknow" class="btn btn-teal btn-block rounded-0 text-left" payment-url="/checkout/">Classified Text Ad</a>
+            </div> <!-- .accordion-item -->
+
+            <div class="accordion-item">
+                <a href="~/bookclasssifieddisplayad/booknow" class="btn btn-teal btn-block rounded-0 text-left" payment-url="/checkout/classifieddisplay/">Classified Display Ad</a>
+            </div> <!-- .accordion-item -->
+
+            <div class="accordion-item">
+                <a href="~/bookprivatedisplayad/BookNow" class="btn btn-teal btn-block rounded-0 text-left" payment-url="/checkout/privatedisplay/">Private Display Ad</a>
+            </div> <!-- .accordion-item -->
+            <div class="accordion-item">
+                <a href="~/bookgovtprivatedisplayad/booknow" class="btn btn-teal btn-block rounded-0 text-left" payment-url="/checkout/govtad/">Government Ad</a>
+            </div> <!-- .accordion-item -->
+            <div class="accordion-item">
+                <a href="~/bookdigitaldisplayad/BookNow" class="btn btn-teal btn-block rounded-0 text-left" payment-url="/checkout/digitaldisplay/">Digital Ad</a>
+            </div> <!-- .accordion-item -->
+
+
+            @if (isAuthenticated)
+            {
+                var userName = currentLoggedInUser.FullName; //userClaims.FirstOrDefault(c => c.Type == "FullName").Value;
+                <div class="accordion-item">
+                    <a href="javascript:void(0);" class="btn btn-teal btn-block rounded-0 text-left"><i class="fa fa-user-circle"></i> @userName</a>
+                </div> <!-- .accordion-item -->
+                <div class="accordion-item">
+                    <a href="/order/list" class="btn btn-teal btn-block rounded-0 text-left">Find Order</a>
+                </div> <!-- .accordion-item -->
+                <div class="accordion-item">
+                    <a href="/uploadlater/list" class="btn btn-teal btn-block rounded-0 text-left">Upload Later</a>
+                </div> <!-- .accordion-item -->
+                <div class="accordion-item">
+                    <a href="/myprofile" class="btn btn-teal btn-block rounded-0 text-left">My Profile</a>
+                </div> <!-- .accordion-item -->
+
+                <div class="accordion-item">
+                    <a href="/otprequest" class="btn btn-teal btn-block rounded-0 text-left">Change Password</a>
+                </div> <!-- .accordion-item -->
+
+                <div class="accordion-item">
+                    <a href="/Account/logout" class="btn btn-teal btn-block rounded-0 text-left">Signout</a>
+                </div> <!-- .accordion-item -->
+            }
+        </div> <!-- #accordion -->
+    </div> <!-- container -->
+</div> <!-- #navbar-mobile -->
+<!-- ---------------------------------------------------------------------------------------------- -->
+<!-- Navbar - Desktop -->
+<div id="navbar" class="my-2 d-xl-block d-none">
+    <div class="container">
+        <div class="d-flex justify-content-right align-items-center">
+            <div class="menu-item">
+                <a href="/dashboard" class="menu-link menu-active">Home</a>
+            </div> <!-- menu-item -->
+            <div class="menu-item">
+                <a href="~/adbook/booknow" class="menu-link" payment-url="/checkout/">Classified Text Ad</a>
+            </div> <!-- menu-item -->
+            <div class="menu-item">
+                <a href="~/bookclasssifieddisplayad/booknow" class="menu-link" payment-url="/checkout/classifieddisplay/">Classified Display Ad</a>
+            </div>
+            <div class="menu-item">
+                <a href="~/bookprivatedisplayad/booknow" class="menu-link" payment-url="/checkout/privatedisplay/">Private Display Ad</a>
+            </div>
+            <!-- menu-item -->
+            <div class="menu-item">
+                <a href="~/bookgovtprivatedisplayad/booknow" class="menu-link" payment-url="/checkout/govtad/">Government Ad</a>
+            </div>
+            <!-- menu-item -->
+            <div class="menu-item">
+                <a href="~/bookdigitaldisplayad/booknow" class="menu-link" payment-url="/checkout/digitaldisplay/">Digital Ad</a>
+            </div>
+
+            @if (isAuthenticated)
+            {
+                var userName = currentLoggedInUser.FullName;//userClaims.FirstOrDefault(c => c.Type == "FullName").Value;
+                <div class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link"><i class="fa fa-user-circle"></i> @userName<i class="fa fa-angle-down"></i></a>
+                    <div class="submenu">
+                        <a href="/order/list" class="text-white menu-content-link">Find Order</a>
+                        <a href="/uploadlater/list" class="text-white menu-content-link">Upload Later</a>
+                        <a href="/myprofile" class="text-white menu-content-link">My Profile</a>
+                        <a href="/otprequest" class="text-white menu-content-link">Change Password</a>
+                        <a href="/Account/logout" class="text-white menu-content-link">Signout</a>
+                    </div>
+
+                </div>
+
+            }
+        </div>
+        <!-- /.d-flex justify-content-around align-items-center -->
+    </div>
+    <!-- /.container -->
+</div>

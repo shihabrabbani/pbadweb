@@ -1,0 +1,56 @@
+﻿
+@model AdBookingOrderListViewModel
+
+<div class="row">
+    <div class="col-md-12 x-scroller">
+        @if (Model.UploadLaterOrderList.Any())
+        {
+            <table class="table table-hover table-striped table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Booking #</th>
+                        <th scope="col">Ad Type</th>
+                        <th scope="col">Booked By</th>
+                        <th scope="col">Booked On</th>
+                        <th scope="col">Bill No</th>
+                        <th scope="col">Net Payable</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.UploadLaterOrderList)
+                    {                       
+                        <tr>
+                            <th scope="row">@item.BookingNo</th>
+                            <td>@item.AdType</td>
+                            <td>@item.BookedBy</td>
+                            <td>@item.BookDate.ToString("dd-MMM-yyyy h:mm tt")</td>                           
+                            <td>@item.BillNo</td>
+                            <td>@item.NetPayable</td>
+                            <td><a href="/uploadlater/adtype/@item.AdType/@item.AutoId/bookingno/@item.BookingNo" class="btn btn-teal  btn-sm"><i class="fa fa-upload"></i> Upload</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @if (Model.SearchFilter.TotalCount > Model.SearchFilter.PageSize)
+            {
+                <div class="pagination__wrapper add_bottom_30">
+                    @Html.PagedListPager((IPagedList)Model.UploadLaterOrderList, page => Url.Action("List", new
+                   {
+                       pageNumber = page,
+                       searchTerm = Model.SearchFilter.SearchTerm,
+                       sort = Model.SearchFilter.SortColumn,
+                       sortdir = Model.SearchFilter.SortDirection
+                   }))
+                </div>
+            }
+        }
+        else
+        { 
+            <div class="alert alert-dark" role="alert">
+                There are no recods to show
+            </div>
+        }
+    </div>
+</div>

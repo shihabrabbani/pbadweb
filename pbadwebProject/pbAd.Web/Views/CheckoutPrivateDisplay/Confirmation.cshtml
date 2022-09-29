@@ -1,0 +1,29 @@
+﻿@inject IConfiguration Configuration
+@model pbAd.Web.ViewModels.Checkout.CheckoutViewModel
+@{
+    ViewData["Title"] = "Confrimation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var version = Configuration.GetSection("Proshar")["Version"];
+}
+
+
+<div class="home-content">
+    <div class="container">
+        <div class="jumbotron" style="padding: 20px">
+            <div class="text-center">
+                <div class="print-section" style="font-family: sans-serif;max-width: 940px; width: 100%; text-align: center; padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto;">
+                    <h2 style="margin-top: 50px;">Your Booking is Successfull</h2>
+                    <h4>Booking Number <span style="font-weight: bold;font-size:29px;"> #@ViewBag.BookingNo</span></h4>
+                </div>
+                <hr />
+                <p>Click below button to print your copy</p>
+                <a href="javascript:void(0);" class="btn btn-sm btn-teal btn-print-invoice" id="btnPrint"> <i class="fa fa-print"></i> PRINT</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/plugins/html-print/printThis.js?v=@version"></script>
+    <script src="~/js/checkouts/checkoutConfirmationManager.js?v=@version"></script>
+}

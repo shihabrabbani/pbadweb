@@ -1,0 +1,28 @@
+﻿@inject IConfiguration Configuration
+@model AdBookingOrderListViewModel
+
+@{
+    ViewData["Title"] = "Checkout Fail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var version = Configuration.GetSection("Proshar")["Version"];
+}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="container">
+            <div class="jumbotron" style="padding: 20px">
+                <div class="text-center">
+                    <h2><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Your checkout has been Failed. </h2>
+                    <h3>Please contact with our support team with the below info</h3>
+                    <h3>Helpline: //TODO</h3>
+                    <h3>Email: //TODO</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+
+}
+

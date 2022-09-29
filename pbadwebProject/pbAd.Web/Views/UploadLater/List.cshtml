@@ -1,0 +1,21 @@
+﻿@inject IConfiguration Configuration
+@model AdBookingOrderListViewModel
+
+@{
+    ViewData["Title"] = "Upload Later Orders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var version = Configuration.GetSection("Proshar")["Version"];
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        @await Html.PartialAsync("_UploadLaterSearchFormPartial", Model.SearchFilter)
+        @await Html.PartialAsync("_UploadLaterListPartial", Model)
+    </div>
+
+</div>
+
+@section Scripts{    
+    <script src="~/js/order/uploadLaterManager.js?v=@version"></script>
+}
+

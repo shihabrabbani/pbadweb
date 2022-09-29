@@ -1,0 +1,83 @@
+﻿@inject IConfiguration Configuration
+@{
+    var version = Configuration.GetSection("Proshar")["Version"];
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <environment include="Development,Production">
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lora:400,400italic,700italic,900italic">
+
+        <!-- Bootstrap CSS -->
+        <link href="~/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css">
+        <link href="~/plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="~/css/style.css?v=@version">
+
+        <link href="~/plugins/toastr/toastr.css" rel="stylesheet" />
+        <link href="~/css/custom.css?v=@version" rel="stylesheet" />
+        <link href="~/plugins/dropify/dist/css/dropify.css" rel="stylesheet" />
+
+        <link href="~/plugins/smart-alert/themes/default/theme.css" rel="stylesheet" />
+        <link href="~/plugins/smart-alert/css/alert.css" rel="stylesheet" />
+
+    </environment>
+
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header-wrapper">
+        <header class="pt-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="logo-left">
+                            <img src="~/img/prosharbdLogo.png" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        @RenderSection("BookingWidget", required: false)
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        @await Html.PartialAsync("_LayoutHeader")
+    </div>
+
+    <!-- ===================== CONTENT ===================== -->
+    <div class="container">
+        @RenderBody()
+    </div> <!-- container generic-content -->
+    <!-- footer -->
+    @await Html.PartialAsync("_LayoutFooter")
+
+    <environment include="Development,Production">
+        <script src="~/plugins/jquery/jquery.min.3.5.1.js"></script>
+        <script type="text/javascript" src="~/plugins/jquery-ui/jquery-ui.js"></script>
+        <script type="text/javascript" src="~/plugins/template/popper.min.js"></script>
+        <script type="text/javascript" src="~/plugins/template/bootstrap.min.js"></script>
+        <script type="text/javascript" src="~/plugins/template/custom.js"></script>
+        <script src="~/plugins/momentjs/moment.js"></script>
+        <script src="~/plugins/loadash/lodash.min.js"></script>
+        <script src="~/plugins/cookies/cookie.min.js"></script>
+
+        <script src="~/plugins/toastr/toastr.min.js"></script>
+        <script src="~/plugins/smart-alert/js/alert.js"></script>
+
+        <script src="~/plugins/dropify/dist/js/dropify.js"></script>
+
+
+        @await Html.PartialAsync("_ValidationScriptsPartial")
+        <script type="text/javascript" src="~/js/app.js?v=@version"></script>
+    </environment>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
