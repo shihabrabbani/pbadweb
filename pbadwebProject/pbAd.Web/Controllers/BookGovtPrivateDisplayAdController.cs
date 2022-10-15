@@ -166,7 +166,8 @@ namespace pbAd.Web.Controllers
                     Advertiser = newAdvertiser,
                     ABPrintPrivateDisplay = newPrivateDisplay,
                     ABPrintPrivateDisplayDetailListing = privateDisplayDetailListing,
-                    PrivateDisplayMediaContents = privateDisplayMediaContents
+                    PrivateDisplayMediaContents = privateDisplayMediaContents,
+                    
                 };
 
                 //let's book private display ad
@@ -250,7 +251,7 @@ namespace pbAd.Web.Controllers
                 EditionPageId = privateDisplayDetail.EditionPageId,
                 EstimatedTotal = privateDisplay.GrossTotal,
                 ColumnSize = privateDisplay.ColumnSize,
-                InchSize = (int)privateDisplay.InchSize,
+                InchSize = privateDisplay.InchSize,
                 CategoryId = privateDisplay.CategoryId,
                 Remarks = privateDisplay.Remarks,
                 ABPrintPrivateDisplayId = privateDisplay.ABPrintPrivateDisplayId,
@@ -702,7 +703,7 @@ namespace pbAd.Web.Controllers
                 UploadLater = model.UploadLater,
                 BookingStep = BookingStepConstants.Booked,
                 ColumnSize = (int)model.ColumnSize,
-                InchSize = (int)model.InchSize,
+                InchSize = model.InchSize,
                 BookingNo = bookingNo,
                 CategoryId = model.CategoryId,
                 BookedBy = CurrentLoginUser.UserId,
