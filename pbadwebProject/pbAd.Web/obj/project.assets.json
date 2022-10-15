@@ -7996,11 +7996,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Web\\pbAd.Web.csproj",
+      "projectUniqueName": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadweb\\pbadwebProject\\pbAd.Web\\pbAd.Web.csproj",
       "projectName": "pbAd.Web",
-      "projectPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Web\\pbAd.Web.csproj",
+      "projectPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadweb\\pbadwebProject\\pbAd.Web\\pbAd.Web.csproj",
       "packagesPath": "C:\\Users\\Arif Rabbani\\.nuget\\packages\\",
-      "outputPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Web\\obj\\",
+      "outputPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadweb\\pbadwebProject\\pbAd.Web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Arif Rabbani\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8017,14 +8017,14 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Core\\pbAd.Core.csproj": {
-              "projectPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Core\\pbAd.Core.csproj"
+            "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadweb\\pbadwebProject\\pbAd.Core\\pbAd.Core.csproj": {
+              "projectPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadweb\\pbadwebProject\\pbAd.Core\\pbAd.Core.csproj"
             },
-            "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Data\\pbAd.Data.csproj": {
-              "projectPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Data\\pbAd.Data.csproj"
+            "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadweb\\pbadwebProject\\pbAd.Data\\pbAd.Data.csproj": {
+              "projectPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadweb\\pbadwebProject\\pbAd.Data\\pbAd.Data.csproj"
             },
-            "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Service\\pbAd.Service.csproj": {
-              "projectPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Service\\pbAd.Service.csproj"
+            "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadweb\\pbadwebProject\\pbAd.Service\\pbAd.Service.csproj": {
+              "projectPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadweb\\pbadwebProject\\pbAd.Service\\pbAd.Service.csproj"
             }
           }
         }

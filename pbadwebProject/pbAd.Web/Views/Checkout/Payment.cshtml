@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var version = Configuration.GetSection("Proshar")["Version"];
 
-    decimal dateOfferDiscount = Convert.ToInt32(Math.Round(Model.ABPrintClassifiedText.DiscountPercent, 0, MidpointRounding.AwayFromZero));
+    decimal dateOfferDiscount = Convert.ToInt32(0);
 
     var userGroup = User.Claims.FirstOrDefault(c => c.Type == "GroupId").Value;
     var canViewCRM = userGroup == UserGroupConstants.CRM_User.ToString();
@@ -51,7 +51,7 @@
                                 <i class="fa fa-address-card-o"></i>
                             </div>
                             <div class="d-flex">
-                                <h5>Ad Multi Edition</h5>
+                                <h5>Edition</h5>
                                 <div class="ml-auto btn-edit-sm-screen">
                                     <a class="btn btn-teal btn-sm pull-right edit" style="position:fixed!important;" oncontextmenu="return false" href="/adbook/edit/@Model.ABPrintClassifiedTextId/bookingno/@Model.BookingNo"><i class="fa fa-pencil-square-o"></i> Edit</a>
                                 </div>
@@ -127,10 +127,10 @@
                                                 <td class="custom-td">Rate </td>
                                                 <td class="price">@((int)Model.Rate) </td>
                                             </tr>
-                                            <tr>
+                                            @*<tr>
                                                 <td class="custom-td">Ad Enhancement </td>
                                                 <td class="price">@Html.Raw(Model.AdEnhancement)</td>
-                                            </tr>
+                                            </tr>*@
                                             <tr>
                                                 <td class="custom-td">Publish Dates </td>
                                                 <td class="price">@Model.BasedOfferDatesInString</td>
@@ -193,17 +193,17 @@
                         </div>
                     </div>
 
-                    <div class="btn btn-teal compose-ad">Preview</div>
+                    <!--<div class="btn btn-teal compose-ad">Preview</div>
                     <div class="add-preview">
                         <div class="bdr" style="width:145px;">
                             <div class="con" id="mainAddText">
                                 <div class="ad-preview">
                                     @Html.Raw(Model.AdContent)
                                 </div>
-                            </div>
+                            </div>-->
                             @*<div class="note">Font size in the preview is not as per scale. Actual word/lines may vary based on selected enhancements.</div>*@
-                        </div>
-                    </div>
+                        <!--</div>
+                    </div>-->
                     <h4 class="justify-content-between align-items-center mb-3">
                         <span class="text-muted">Order Details</span>
                     </h4>
@@ -212,11 +212,11 @@
                             <h6 class="my-0">Estimated Cost (BDT)</h6>
                             <strong class="total-estimated-costing">@Model.ABPrintClassifiedText.GrossTotal</strong>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                            <h6 class="my-0">Edition Offer Discount [%]</h6>
-                            <strong class="edition-offer-discount">‎0</strong>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        @*<li class="list-group-item d-flex justify-content-between lh-condensed">
+            <h6 class="my-0">Edition Offer Discount [%]</h6>
+            <strong class="edition-offer-discount">‎0</strong>
+        </li>*@
+                        <li class="list-group-item d-flex justify-content-between lh-condensed" style="visibility:hidden;">
                             <h6 class="my-0">Date Offer Discount [%]</h6>
                             <strong class="date-offer-discount">@dateOfferDiscount</strong>
                         </li>
@@ -265,9 +265,9 @@
 
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="AcceptTermsAndConditions" name="AcceptTermsAndConditions" value="true" />
-                        <label class="custom-control-label" for="AcceptTermsAndConditions">I Accept terms & Conditions [<a target="_blank" href="/termsandconditions">Terms</a>]</label>
+                        <label class="custom-control-label" for="AcceptTermsAndConditions">Confirm </label>
                     </div>
-                    <button class="btn btn-teal btn-lg btn-block btn-continue-payment" type="submit">Continue to checkout</button>
+                    <button class="btn btn-teal btn-lg btn-block btn-continue-payment" type="submit">Submit</button>
                 </div>
             </div>
         }

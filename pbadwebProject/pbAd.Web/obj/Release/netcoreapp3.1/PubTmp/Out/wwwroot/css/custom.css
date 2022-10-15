@@ -1,0 +1,176 @@
+
+/* styles for validation helpers */
+.field-validation-error span {
+    color: #d40b10 !important;
+    /*font-weight: bold;*/
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #e80c4d !important;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #e80c4d;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.cls-dis-photoframe {
+    max-width: 40%;
+    max-height: 40%;
+    margin: auto;
+}
+
+    .cls-dis-photoframe img {
+        max-width: 100%;
+        max-height: 100%;
+        margin-left: -2px;
+    }
+
+.dropify-wrapper .dropify-message p {
+    margin: 5px 0 0 0;
+    font-size: 14px;
+}
+
+.autocom-loading {
+    background: url('/img/loading.gif') no-repeat right center;
+}
+
+.bb-1 {
+    border-bottom: 1px solid #ced4da;
+}
+
+.wd-160 {
+    width: 260px;
+}
+
+.display-cost {
+    padding: 5px 0px;
+}
+
+.cost-enhance-info {
+    position: absolute;
+    right: 31px;
+    color: #5b5755;
+    font-size: 13px !important;
+    padding-top: 20px;
+}
+
+.clsified-display-prev {
+    /*height: 300px;*/
+    width: 250px;
+}
+
+.classified-display-content {
+    text-align: justify;
+}
+
+.private-display.line-cost {
+    display: flex;
+    justify-content: space-between;
+    background: #d8d8d8;
+    padding: 2px 8px;
+    color: #5b5755 !important;
+    font-weight: 700;
+    width: 100%;
+    margin-top: -6px;
+    border: 1px #a2a2a2 solid;
+    border-top: 0;
+    padding-bottom: 0px;
+}
+
+
+    .private-display.line-cost p {
+        margin-bottom: 0px !important;
+    }
+
+    .private-display.line-cost span {
+        font-size: 15px !important;
+        margin-top: 0px !important;
+    }
+
+.date-based-offer-container {
+    max-height: 71px;
+    overflow-y: scroll;
+}
+
+.ad-preview table td {
+    padding: .45rem;
+}
+
+.td-top {
+    border-top: none !important;
+    padding-top: 0 !important;
+}
+
+.td-bottom {
+    padding-bottom: 0 !important;
+}
+
+.disable-upload-files {
+    opacity: 0.5;
+}
+
+.hide-section {
+    display: none !important;
+}
+
+.logo-direct-payment {
+    height: 105px !important;
+    width: 338px !important;
+}
+
+.selected-payment-method {
+    border: 2px solid #004c3d !important;
+}
+
+.new-pass {
+    display: block !important;
+}
+
+.btn-edit-sm-screen {
+    display:none;
+}
+
+@media screen and (max-width: 572px) {
+    .shipping {
+        margin-top: 0px !important;
+    }
+    .shipping h5 {
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+    }
+    .btn-edit-sm-screen {
+        display: block !important;
+    }
+    .btn-edit-lg-screen {
+        display: none !important;
+    }
+}
+
+
+/*datepicker*/
+div.ui-datepicker {
+    font-size: 10px !important;
+}
+
+.x-scroller {
+    overflow: auto;
+    white-space: nowrap;
+}

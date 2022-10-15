@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "13hDc0FZlbKvJuSH852tn5OnRJ3G/xmZsw7WFNW2Yk/gxI1T7zgB/VhGGYzXHOYwgHY5CCzTYboScQDxxp7b6g==",
+  "dgSpecHash": "XsktyVU4eZq/nwIZv4FddpMd1Rrdijo7Ql14Djm6Uzn3KgU8nPEIJRVHk3q5EksCJl/9dQ6OfJ1syMFvSOiOpg==",
   "success": true,
-  "projectFilePath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Web\\pbAd.Web.csproj",
+  "projectFilePath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadweb\\pbadwebProject\\pbAd.Web\\pbAd.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Arif Rabbani\\.nuget\\packages\\automapper\\10.0.0\\automapper.10.0.0.nupkg.sha512",
     "C:\\Users\\Arif Rabbani\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.0.1\\automapper.extensions.microsoft.dependencyinjection.8.0.1.nupkg.sha512",

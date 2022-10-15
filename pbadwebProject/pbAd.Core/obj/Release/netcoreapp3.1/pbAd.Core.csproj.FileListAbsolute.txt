@@ -1,0 +1,10 @@
+D:\eGo\ProtidinerBangladesh\AdWeb\pbadweb\pbadwebProject\pbAd.Core\bin\Release\netcoreapp3.1\pbAd.Core.deps.json
+D:\eGo\ProtidinerBangladesh\AdWeb\pbadweb\pbadwebProject\pbAd.Core\bin\Release\netcoreapp3.1\pbAd.Core.dll
+D:\eGo\ProtidinerBangladesh\AdWeb\pbadweb\pbadwebProject\pbAd.Core\bin\Release\netcoreapp3.1\pbAd.Core.pdb
+D:\eGo\ProtidinerBangladesh\AdWeb\pbadweb\pbadwebProject\pbAd.Core\obj\Release\netcoreapp3.1\pbAd.Core.csproj.AssemblyReference.cache
+D:\eGo\ProtidinerBangladesh\AdWeb\pbadweb\pbadwebProject\pbAd.Core\obj\Release\netcoreapp3.1\pbAd.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\eGo\ProtidinerBangladesh\AdWeb\pbadweb\pbadwebProject\pbAd.Core\obj\Release\netcoreapp3.1\pbAd.Core.AssemblyInfoInputs.cache
+D:\eGo\ProtidinerBangladesh\AdWeb\pbadweb\pbadwebProject\pbAd.Core\obj\Release\netcoreapp3.1\pbAd.Core.AssemblyInfo.cs
+D:\eGo\ProtidinerBangladesh\AdWeb\pbadweb\pbadwebProject\pbAd.Core\obj\Release\netcoreapp3.1\pbAd.Core.csproj.CoreCompileInputs.cache
+D:\eGo\ProtidinerBangladesh\AdWeb\pbadweb\pbadwebProject\pbAd.Core\obj\Release\netcoreapp3.1\pbAd.Core.dll
+D:\eGo\ProtidinerBangladesh\AdWeb\pbadweb\pbadwebProject\pbAd.Core\obj\Release\netcoreapp3.1\pbAd.Core.pdb

@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-5">
+                        @*<div class="col-md-5">
                             <div class="enhan">
                                 <div class="btn btn-teal compose-ad">Ad Enhancements</div>
                                 <div class="ad-editer">
@@ -71,7 +71,7 @@
                                     <p><input type="checkbox" value="@AddEnhancementTypeConstants.BoldInScreenAndDoubleBoxes" name="AdEnhancementType" ad-enhancement-type="@Model.RatePrintClassifiedText.BoldScreenDoubleBoxPercentage"> Bold in Screen and Double Box ( <span style="color: red">@((int)@Model.RatePrintClassifiedText.BoldScreenDoubleBoxPercentage)%</span>)</p>
                                 </div>
                             </div>
-                        </div>
+                        </div>*@
                         <div class="col-md-12">
                             <p>Please keep space between two words while composing your ad.</p>
                         </div>
@@ -158,20 +158,20 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="btn btn-teal compose-ad">Ad Preview</div>
+                    <!--<div class="btn btn-teal compose-ad">Ad Preview</div>
                     <div class="add-preview">
                         <div class="bdr" style="width:145px;">
                             <div class="con" id="mainAddText">
                                 <div class="ad-preview">
 
                                 </div>
-                            </div>
+                            </div>-->
                             @*<div class="note">Font size in the preview is not as per scale. Actual word/lines may vary based on selected enhancements.</div>*@
-                        </div>
-                    </div>
+                        <!--</div>
+                    </div>-->
 
                     <div class="add-preview date-based">
-                        <div class="btn btn-teal compose-ad">Date Based Offer</div>
+                        <div class="btn btn-teal compose-ad">Date</div>
                         <div class="bdr">
                             <div class="rate" id="rate">
 
@@ -185,11 +185,11 @@
                                 </div>
                                 <hr />
                                 <div class="date-box">
-                                    <p>Discount: <span class="discount-offer">0</span>%</p>
+                                    @*<p>Discount: <span class="discount-offer">0</span>%</p>*@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-teal btn-make-payment">MAKE PAYMENT <i class="fa fa-long-arrow-right"></i></button>
+                        <button class="btn btn-teal btn-make-payment">Next Step <i class="fa fa-long-arrow-right"></i></button>
                     </div>
 
                 </div>

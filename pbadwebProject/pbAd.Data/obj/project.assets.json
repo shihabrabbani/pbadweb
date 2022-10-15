@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Data\\pbAd.Data.csproj",
+      "projectUniqueName": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadweb\\pbadwebProject\\pbAd.Data\\pbAd.Data.csproj",
       "projectName": "pbAd.Data",
-      "projectPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Data\\pbAd.Data.csproj",
+      "projectPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadweb\\pbadwebProject\\pbAd.Data\\pbAd.Data.csproj",
       "packagesPath": "C:\\Users\\Arif Rabbani\\.nuget\\packages\\",
-      "outputPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadwebProject\\pbAd.Data\\obj\\",
+      "outputPath": "D:\\eGo\\ProtidinerBangladesh\\AdWeb\\pbadweb\\pbadwebProject\\pbAd.Data\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Arif Rabbani\\AppData\\Roaming\\NuGet\\NuGet.Config",
