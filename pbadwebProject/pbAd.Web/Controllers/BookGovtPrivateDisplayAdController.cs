@@ -110,6 +110,8 @@ namespace pbAd.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> BookNow(BookPrivateDisplayGovtAdViewModel model)
         {
+            model.InsideDhaka = true;
+            model.UploadLater = true;
             ModelState.Remove("AgencyId"); ModelState.Remove("AdvertiserId");
             if (!ModelState.IsValid)
                 return Json(new { status = false, message = "You must all the required fields. Try again", type = ActionResultTypeConstants.Message });

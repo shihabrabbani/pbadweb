@@ -58,7 +58,7 @@ namespace pbAd.Service.Brands
             IQueryable<Brand> query = db.Brands;
 
             var itemList = await query
-                .Where(f => filter.SearchTerm == string.Empty || f.BrandName.StartsWith(filter.SearchTerm))
+                .Where(f => filter.SearchTerm == string.Empty || f.BrandName.Contains(filter.SearchTerm))
                 .OrderBy(o=>o.BrandName)
                 .Take(10).ToListAsync();
 
