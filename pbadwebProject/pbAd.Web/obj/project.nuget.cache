@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "oY/8q/IsQR7qiiI1fUIadyFsSne4+4m2CDgrbggyXkUWgryBWjvgFfcyFriR5mg2/v/YAEHkgD+BTIAhI8dB8Q==",
+  "dgSpecHash": "WLhiDZMt66yFUjY/MMO/qJnq2831XDS1oWW1d7NVcbiGSIJORiChnu4fBOabyJZqSA6fpDhAfJJZDcnZlOiokg==",
   "success": true,
   "projectFilePath": "D:\\eGo\\ProtidinerBangladesh\\pbadweb\\pbadwebProject\\pbAd.Web\\pbAd.Web.csproj",
   "expectedPackageFiles": [
@@ -177,7 +177,8 @@
     "C:\\Users\\Ronald\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Ronald\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
     "C:\\Users\\Ronald\\.nuget\\packages\\x.pagedlist\\8.4.3\\x.pagedlist.8.4.3.nupkg.sha512",
-    "C:\\Users\\Ronald\\.nuget\\packages\\x.pagedlist.mvc.core\\8.4.3\\x.pagedlist.mvc.core.8.4.3.nupkg.sha512"
+    "C:\\Users\\Ronald\\.nuget\\packages\\x.pagedlist.mvc.core\\8.4.3\\x.pagedlist.mvc.core.8.4.3.nupkg.sha512",
+    "C:\\Users\\Ronald\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.28\\microsoft.netcore.app.host.win-x64.3.1.28.nupkg.sha512"
   ],
   "logs": []
 }

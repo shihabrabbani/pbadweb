@@ -68,7 +68,7 @@ var app = {
                 changeMonth: true,
                 changeYear: true,
                 todayHighlight: true,
-                minDate: date
+                //minDate: date
             }).on('changeDate', function (ev) {
                 $datePickerGlobal.datepicker('hide');
             });
