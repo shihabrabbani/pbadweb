@@ -1285,7 +1285,6 @@ D:\eGo\ProtidinerBangladesh\pbadweb\pbadwebProject\pbAd.Web\obj\Debug\netcoreapp
 D:\eGo\ProtidinerBangladesh\pbadweb\pbadwebProject\pbAd.Web\obj\Debug\netcoreapp3.1\pbAd.Web.RazorAssemblyInfo.cs
 D:\eGo\ProtidinerBangladesh\pbadweb\pbadwebProject\pbAd.Web\obj\Debug\netcoreapp3.1\staticwebassets\pbAd.Web.StaticWebAssets.Manifest.cache
 D:\eGo\ProtidinerBangladesh\pbadweb\pbadwebProject\pbAd.Web\obj\Debug\netcoreapp3.1\staticwebassets\pbAd.Web.StaticWebAssets.xml
-D:\eGo\ProtidinerBangladesh\pbadweb\pbadwebProject\pbAd.Web\obj\Debug\netcoreapp3.1\scopedcss\bundle\pbAd.Web.styles.css
 D:\eGo\ProtidinerBangladesh\pbadweb\pbadwebProject\pbAd.Web\obj\Debug\netcoreapp3.1\pbAd.Web.TagHelpers.input.cache
 D:\eGo\ProtidinerBangladesh\pbadweb\pbadwebProject\pbAd.Web\obj\Debug\netcoreapp3.1\pbAd.Web.TagHelpers.output.cache
 D:\eGo\ProtidinerBangladesh\pbadweb\pbadwebProject\pbAd.Web\obj\Debug\netcoreapp3.1\pbAd.Web.RazorCoreGenerate.cache

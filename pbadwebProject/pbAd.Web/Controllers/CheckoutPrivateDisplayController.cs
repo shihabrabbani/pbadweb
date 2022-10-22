@@ -686,9 +686,9 @@ namespace pbAd.Web.Controllers
                 billNumber = GetBillNumber(totalCount);
 
                 if (paymentModeId == PaymentModeConstants.Cash || paymentModeId == PaymentModeConstants.SSL)                                 
-                    billNo = $@"AJP/PD/RPT/{billNumber}";                
+                    billNo = $@"PB/PD/RPT/{billNumber}";                
                 else                                  
-                    billNo = $@"AJP/PD/CR/{billNumber}";                
+                    billNo = $@"PB/PD/CR/{billNumber}";                
             }
             catch
             {
