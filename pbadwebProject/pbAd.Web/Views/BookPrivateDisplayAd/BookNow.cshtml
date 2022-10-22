@@ -166,12 +166,16 @@
                                         </div>
                                     </div>*@
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            @Html.LabelFor(model => model.Remarks)
+											<label>Caption </label>
                                             @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control" })
                                             @Html.ValidationMessageFor(model => model.Remarks)
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.ReferenceNo)
+                                        @Html.TextBoxFor(model => model.ReferenceNo, new { @class = "form-control", autocomplete = "off", @placeholder = "Reference No" })
                                     </div>
                                 </div>
 
@@ -179,7 +183,7 @@
 
                         </div>
                     </div>
-
+@*
                     <div class="main-grid compose">
                         <div class="title_bg">
                             <h5>Upload Files</h5>
@@ -210,7 +214,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
                 <div class="col-md-3">
                     <div class="btn btn-teal compose-ad">Summary</div>
@@ -244,7 +248,7 @@
                     </div>
 
                     <div class="add-preview">
-                        <div class="btn btn-teal compose-ad">Date Based Offer</div>
+                        <div class="btn btn-teal compose-ad">Date</div>
                         <div class="bdr">
                             <div class="rate" id="rate">
                                 <!--Add here date picker -->
@@ -256,12 +260,12 @@
                                     <span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> No dates selected</span>
                                 </div>
                                 <hr />
-                                <div class="date-box">
+                                <div class="date-box" style="display:none">
                                     <p>Discount: <span class="discount-offer">0</span>%</p>
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-teal btn-make-payment" style="margin:10px 0px;">MAKE PAYMENT <i class="fa fa-long-arrow-right"></i></button>
+                        <button class="btn btn-teal btn-make-payment" style="margin:10px 0px;">Next Step <i class="fa fa-long-arrow-right"></i></button>
                     </div>
 
                 </div>

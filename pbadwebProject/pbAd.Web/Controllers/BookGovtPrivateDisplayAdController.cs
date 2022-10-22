@@ -722,6 +722,7 @@ namespace pbAd.Web.Controllers
                 UpazillaId = CurrentLoginUser.UpazillaId,
                 AgencyId = model.AgencyId,               
                 BrandId = model.BrandId, 
+                ReferenceNo = model.ReferenceNo,
                 CreatedBy = CurrentLoginUser.UserId,
                 ModifiedBy = CurrentLoginUser.UserId
             };

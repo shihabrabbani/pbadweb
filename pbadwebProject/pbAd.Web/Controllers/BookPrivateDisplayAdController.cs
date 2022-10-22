@@ -104,6 +104,7 @@ namespace pbAd.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> BookNow(BookPrivateDisplayAdViewModel model)
         {
+            model.UploadLater = true;
             ModelState.Remove("AgencyId"); 
             ModelState.Remove("AdvertiserId");
 
@@ -732,6 +733,7 @@ namespace pbAd.Web.Controllers
                 AgencyId = model.AgencyId,
                 IsCorrespondent = CurrentLoginUser.IsCorrespondentUser,
                 BrandId = model.BrandId, 
+                ReferenceNo = model.ReferenceNo, 
                 CreatedBy = CurrentLoginUser.UserId,
                 ModifiedBy = CurrentLoginUser.UserId
             };

@@ -52,6 +52,9 @@ namespace pbAd.Web.ViewModels.BookPrivateDisplayAds
         [Display(Name = "Agency")]
         public int AgencyId { get; set; }
 
+        [Display(Name = "Reference No")]
+        public string ReferenceNo { get; set; }
+
         //addtional
         [Display(Name = "Agency")]
         public string AgencyAutoComplete { get; set; }
