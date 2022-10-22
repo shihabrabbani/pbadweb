@@ -48,7 +48,7 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="row">
-                        <div class="col-md-7">
+                        <div class="col-md-6">
                             <div class="ad-compose">
                                 <div class="btn btn-teal compose-ad">Compose Ad Matter</div>
                                 @Html.TextAreaFor(model => model.AdContent, new { @rows = "9", @class = "adfield", @style = "font-family:'VarendraAP- Regular'", @id = "abcdfield", @placeholder = "start typing your ad here" })
@@ -57,28 +57,15 @@
                                     <p>Estimated Cost BDT: <span class="esitmated-cost-amount">0</span></p>
                                 </div>
                             </div>
-                        </div>
-                        @*<div class="col-md-5">
-                            <div class="enhan">
-                                <div class="btn btn-teal compose-ad">Ad Enhancements</div>
-                                <div class="ad-editer">
-                                    <p><input type="checkbox" value="@AddEnhancementTypeConstants.BigBulletPointSingle" name="AdEnhancementTypeBullet" ad-enhancement-type="@Model.RatePrintClassifiedText.BigBulletPointSingle"> @AddEnhancementTypeConstants.BigBulletPointSingle ( <span style="color: red">@((int)@Model.RatePrintClassifiedText.BigBulletPointSingle)%</span>)</p>
-                                    <p><input type="checkbox" value="@AddEnhancementTypeConstants.BigBulletPointDouble" name="AdEnhancementTypeBullet" ad-enhancement-type="@Model.RatePrintClassifiedText.BigBulletPointDouble"> Big Bullet Point (Double) ( <span style="color: red">@((int)@Model.RatePrintClassifiedText.BigBulletPointDouble)%</span>)</p>
-                                    <hr />
-                                    <p><input type="checkbox" value="@AddEnhancementTypeConstants.Bold" name="AdEnhancementType" ad-enhancement-type="@Model.RatePrintClassifiedText.BoldPercentage"> Bold ( <span style="color: red">@((int)@Model.RatePrintClassifiedText.BoldPercentage)%</span> )</p>
-                                    <p><input type="checkbox" value="@AddEnhancementTypeConstants.BoldInScreen" name="AdEnhancementType" ad-enhancement-type="@Model.RatePrintClassifiedText.BoldinScreenPercentage"> Bold in Screen ( <span style="color: red">@((int)@Model.RatePrintClassifiedText.BoldinScreenPercentage)%</span>)</p>
-                                    <p><input type="checkbox" value="@AddEnhancementTypeConstants.BoldInScreenAndSingleBox" name="AdEnhancementType" ad-enhancement-type="@Model.RatePrintClassifiedText.BoldScreenSingleBoxPercentage"> Bold in Screen and Single Box ( <span style="color: red">@((int)@Model.RatePrintClassifiedText.BoldScreenSingleBoxPercentage)%</span>)</p>
-                                    <p><input type="checkbox" value="@AddEnhancementTypeConstants.BoldInScreenAndDoubleBoxes" name="AdEnhancementType" ad-enhancement-type="@Model.RatePrintClassifiedText.BoldScreenDoubleBoxPercentage"> Bold in Screen and Double Box ( <span style="color: red">@((int)@Model.RatePrintClassifiedText.BoldScreenDoubleBoxPercentage)%</span>)</p>
-                                </div>
-                            </div>
-                        </div>*@
-                        <div class="col-md-12">
+
                             <p>Please keep space between two words while composing your ad.</p>
                         </div>
-                    </div>
-                    <div class="row main-grid">
-                        
-                        <div class="col-md-12 title_bg">
+
+
+
+
+
+                        <div class="col-md-6 title_bg">
                             <div class="btn btn-teal compose-ad">other Information</div>
                             <div class="ad-editer">
                                 <div class="cat-select contact">
@@ -141,9 +128,9 @@
                                         <div class="cat-select contact">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <div class="form-group">
+                                                    <div class="form-group" style="padding-bottom:30px">
                                                         @Html.LabelFor(model => model.Remarks)
-                                                        @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control" })
+                                                        @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control"})
                                                         @Html.ValidationMessageFor(model => model.Remarks)
                                                     </div>
                                                 </div>
@@ -155,7 +142,31 @@
                             </div>
 
                         </div>
+
+                        @*<div class="col-md-5">
+                            <div class="enhan">
+                                <div class="btn btn-teal compose-ad">Ad Enhancements</div>
+                                <div class="ad-editer">
+                                    <p><input type="checkbox" value="@AddEnhancementTypeConstants.BigBulletPointSingle" name="AdEnhancementTypeBullet" ad-enhancement-type="@Model.RatePrintClassifiedText.BigBulletPointSingle"> @AddEnhancementTypeConstants.BigBulletPointSingle ( <span style="color: red">@((int)@Model.RatePrintClassifiedText.BigBulletPointSingle)%</span>)</p>
+                                    <p><input type="checkbox" value="@AddEnhancementTypeConstants.BigBulletPointDouble" name="AdEnhancementTypeBullet" ad-enhancement-type="@Model.RatePrintClassifiedText.BigBulletPointDouble"> Big Bullet Point (Double) ( <span style="color: red">@((int)@Model.RatePrintClassifiedText.BigBulletPointDouble)%</span>)</p>
+                                    <hr />
+                                    <p><input type="checkbox" value="@AddEnhancementTypeConstants.Bold" name="AdEnhancementType" ad-enhancement-type="@Model.RatePrintClassifiedText.BoldPercentage"> Bold ( <span style="color: red">@((int)@Model.RatePrintClassifiedText.BoldPercentage)%</span> )</p>
+                                    <p><input type="checkbox" value="@AddEnhancementTypeConstants.BoldInScreen" name="AdEnhancementType" ad-enhancement-type="@Model.RatePrintClassifiedText.BoldinScreenPercentage"> Bold in Screen ( <span style="color: red">@((int)@Model.RatePrintClassifiedText.BoldinScreenPercentage)%</span>)</p>
+                                    <p><input type="checkbox" value="@AddEnhancementTypeConstants.BoldInScreenAndSingleBox" name="AdEnhancementType" ad-enhancement-type="@Model.RatePrintClassifiedText.BoldScreenSingleBoxPercentage"> Bold in Screen and Single Box ( <span style="color: red">@((int)@Model.RatePrintClassifiedText.BoldScreenSingleBoxPercentage)%</span>)</p>
+                                    <p><input type="checkbox" value="@AddEnhancementTypeConstants.BoldInScreenAndDoubleBoxes" name="AdEnhancementType" ad-enhancement-type="@Model.RatePrintClassifiedText.BoldScreenDoubleBoxPercentage"> Bold in Screen and Double Box ( <span style="color: red">@((int)@Model.RatePrintClassifiedText.BoldScreenDoubleBoxPercentage)%</span>)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Please keep space between two words while composing your ad.</p>
+                    </div>*@
                     </div>
+@*                    <div class="row main-grid">
+
+
+
+
+                    </div>*@
                 </div>
                 <div class="col-md-3">
                     <!--<div class="btn btn-teal compose-ad">Ad Preview</div>
@@ -189,7 +200,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-teal btn-make-payment">Next Step <i class="fa fa-long-arrow-right"></i></button>
+                        <button class="btn btn-teal btn-make-payment" style="margin-top:140px;float: right;">Next Step <i class="fa fa-long-arrow-right"></i></button>
                     </div>
 
                 </div>
